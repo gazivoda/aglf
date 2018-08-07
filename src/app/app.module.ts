@@ -11,6 +11,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
@@ -22,7 +23,7 @@ import { AuthGuard } from './shared/auth/auth-guard.service';
 
 import * as $ from 'jquery';
 
-
+import { AglfComponentsModule } from 'app/aglf-components/aglf-components.module';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -37,6 +38,7 @@ export function createTranslateLoader(http: HttpClient) {
     imports: [
         BrowserAnimationsModule,
         StoreModule.forRoot({}),
+        FormsModule,
         AppRoutingModule,
         SharedModule,
         HttpClientModule,
@@ -51,7 +53,8 @@ export function createTranslateLoader(http: HttpClient) {
         }),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo'
-        })
+        }),
+        AglfComponentsModule
     ],
     providers: [
         AuthService,

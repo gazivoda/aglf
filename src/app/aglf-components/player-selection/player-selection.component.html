@@ -1,0 +1,26 @@
+<div class="col-md-12 col-lg-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Player selection</h4>
+    </div>
+    <div class="card-body">
+      <div class="card-block">
+          <ng-template #rt let-r="result" let-t="term">
+            <span (click)="onPlayerSearchChange(r)">{{ r.fullName}}</span>
+          </ng-template>
+          <div class="form-group">
+              <input type="text" class="form-control mb-3" (keyup)="onPlayerFilterChange($event)"
+                [(ngModel)]="filterChange"
+                placeholder="Search for a player" />
+          </div>
+          <div class="form-group">
+              <input type="text" class="form-control mb-3" [(ngModel)]="modelTemp" (change)="onPlayerSearchChange($event)" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter"
+                placeholder="Search for a player" />
+          </div>
+          <div class="list-group">
+              <button type="button" class="list-group-item" *ngFor="let player of filteredPlayers" (click)="onPlayerSearchChange(player)">{{ player.fullName }}</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

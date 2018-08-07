@@ -9,6 +9,8 @@ import { CONTENT_ROUTES } from "./shared/routes/content-layout.routes";
 
 import { AuthGuard } from './shared/auth/auth-guard.service';
 
+import { TeamOverviewComponent } from 'app/aglf-components/team-overview/team-overview.component';
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -17,6 +19,10 @@ const appRoutes: Routes = [
   },
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },
+  {
+      path: 'team',
+      component: TeamOverviewComponent
+  }
 ];
 
 @NgModule({
