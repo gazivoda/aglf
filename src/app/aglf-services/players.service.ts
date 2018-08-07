@@ -9,7 +9,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-neuer.jpg',
     position: Position.GOALKEEPER,
     number: 1,
-    price: 14,
+    price: 6,
     team: null
 }), new Player({
     id: 2,
@@ -18,7 +18,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-neuer.jpg',
     position: Position.GOALKEEPER,
     number: 1,
-    price: 14,
+    price: 5,
     team: null
 }), new Player({
     id: 3,
@@ -27,7 +27,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-alaba.jpg',
     position: Position.DEFENDER,
     number: 27,
-    price: 7,
+    price: 5.5,
     team: null
 }), new Player({
     id: 4,
@@ -36,7 +36,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-benatia.jpg',
     position: Position.DEFENDER,
     number: 5,
-    price: 9,
+    price: 4.5,
     team: null
 }), new Player({
     id: 5,
@@ -45,7 +45,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-benatia.jpg',
     position: Position.DEFENDER,
     number: 5,
-    price: 9,
+    price: 5,
     team: null
 }), new Player({
     id: 6,
@@ -54,7 +54,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-benatia.jpg',
     position: Position.DEFENDER,
     number: 5,
-    price: 9,
+    price: 4,
     team: null
 }), new Player({
     id: 7,
@@ -63,7 +63,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-benatia.jpg',
     position: Position.DEFENDER,
     number: 5,
-    price: 9,
+    price: 4.5,
     team: null
 }), new Player({
     id: 8,
@@ -72,7 +72,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-rilbery.jpg',
     position: Position.MIDFILDER,
     number: 7,
-    price: 14,
+    price: 6,
     team: null
 }), new Player({
     id: 9,
@@ -81,7 +81,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-rilbery.jpg',
     position: Position.MIDFILDER,
     number: 7,
-    price: 14,
+    price: 5.5,
     team: null
 }), new Player({
     id: 10,
@@ -90,7 +90,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-rilbery.jpg',
     position: Position.MIDFILDER,
     number: 7,
-    price: 14,
+    price: 5,
     team: null
 }), new Player({
     id: 11,
@@ -99,7 +99,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-rilbery.jpg',
     position: Position.MIDFILDER,
     number: 7,
-    price: 14,
+    price: 6,
     team: null
 }), new Player({
     id: 12,
@@ -108,7 +108,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-rilbery.jpg',
     position: Position.MIDFILDER,
     number: 7,
-    price: 14,
+    price: 4.5,
     team: null
 }), new Player({
     id: 13,
@@ -117,7 +117,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-pizarro.jpg',
     position: Position.STRIKER,
     number: 9,
-    price: 14,
+    price: 5,
     team: null
 }), new Player({
     id: 14,
@@ -126,7 +126,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-pizarro.jpg',
     position: Position.STRIKER,
     number: 9,
-    price: 14,
+    price: 4.5,
     team: null
 }), new Player({
     id: 15,
@@ -135,7 +135,7 @@ const PLAYERS = [new Player({
     photoUrl: 'bm-pizarro.jpg',
     position: Position.STRIKER,
     number: 9,
-    price: 14,
+    price: 4,
     team: null
 })];
 

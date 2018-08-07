@@ -14,8 +14,9 @@ export class TeamOverviewComponent implements OnInit {
 
     private _destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
-    players = [];
-    selectedPlayers = new Array(15);
+    players: Player[] = [];
+    selectedPlayers: Player[] = [];
+    budget: number;
 
     constructor(private playersService: PlayersService, private userService: UserService) { }
 
@@ -34,6 +35,14 @@ export class TeamOverviewComponent implements OnInit {
             )
             .subscribe(players => {
                 this.selectedPlayers = players;
+            });
+
+        this.userService.getBudget()
+            .pipe(
+                takeUntil(this._destroyed$)
+            )
+            .subscribe(budget => {
+                this.budget = budget;
             });
     }
 
