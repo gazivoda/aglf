@@ -6,18 +6,20 @@ import { PlayerSelectionComponent } from './player-selection/player-selection.co
 import { PlayerCardComponent } from './player-card/player-card.component';
 import { TeamOverviewComponent } from './team-overview/team-overview.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NgbModule,
-    FormsModule
-  ],
-  declarations: [
-      PitchComponent,
-      PlayerSelectionComponent,
-      PlayerCardComponent,
-      TeamOverviewComponent
-  ]
+    imports: [
+        CommonModule,
+        NgbModule,
+        FormsModule,
+        ReactiveFormsModule
+    ],
+    declarations: [
+        PitchComponent,
+        PlayerSelectionComponent,
+        PlayerCardComponent,
+        TeamOverviewComponent
+    ]
 })
 export class AglfComponentsModule { }

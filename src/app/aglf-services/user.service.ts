@@ -8,7 +8,7 @@ import { Player, Position } from 'app/aglf-classes/player';
 export class UserService {
 
     private _selectedPlayers$: BehaviorSubject<Player[]> = new BehaviorSubject<Player[]>(new Array(15));
-    private _budget$: BehaviorSubject<number> = new BehaviorSubject<number>(100);
+    private _budget$: BehaviorSubject<number> = new BehaviorSubject<number>(1000);
 
     constructor() { }
 

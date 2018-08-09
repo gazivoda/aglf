@@ -4,5 +4,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+    production: false,
+    apiEndpoint: 'http://142.93.100.51:8080/aglf/rest' // http://localhost:8080/aglf/rest
 };
