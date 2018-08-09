@@ -13,7 +13,6 @@ import { TextUtilitiesComponent } from "./text-utilities/text-utilities.componen
 import { FeatherComponent } from './icons/feather/feather.component';
 import { FontAwesomeComponent } from './icons/font-awesome/font-awesome.component';
 import { SimpleLineComponent } from './icons/simple-line/simple-line.component';
-;
 
 @NgModule({
     imports: [
