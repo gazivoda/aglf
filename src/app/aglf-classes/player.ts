@@ -3,13 +3,26 @@ import { Team } from './team';
 export enum Position {
     GOALKEEPER = 1,
     DEFENDER = 2,
-    MIDFILDER = 3,
+    MIDFIELDER = 3,
     STRIKER = 4
+}
+
+export function resolvePlayerPosition(position: string): Position {
+    switch (position) {
+        case 'GOALKEEPER':
+            return Position.GOALKEEPER;
+        case 'DEFENDER':
+            return Position.DEFENDER;
+        case 'MIDFILDER':
+            return Position.MIDFIELDER;
+        case 'STRIKER':
+            return Position.STRIKER;
+    }
 }
 
 export class Player {
 
-    id: string = null;
+    id: number = null;
     firstName: string = null;
     lastName: string = null;
     fullName: string = null;
