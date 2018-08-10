@@ -34,7 +34,7 @@ export class UserService {
                         this.addDefender(player);
                         break;
 
-                    case Position.MIDFILDER:
+                    case Position.MIDFIELDER:
                         this.addMidfielder(player);
                         break;
 
