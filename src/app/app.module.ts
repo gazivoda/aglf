@@ -24,7 +24,6 @@ import { AuthGuard } from './shared/auth/auth-guard.service';
 import * as $ from 'jquery';
 
 import { AglfComponentsModule } from 'app/aglf-components/aglf-components.module';
-import { TokenInterceptorService } from 'app/aglf-services/token-interceptor.service';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -60,12 +59,7 @@ export function createTranslateLoader(http: HttpClient) {
     providers: [
         AuthService,
         AuthGuard,
-        DragulaService,
-        // {
-        //     provide: HTTP_INTERCEPTORS,
-        //     useClass: TokenInterceptorService,
-        //     multi: true
-        // }
+        DragulaService
     ],
     bootstrap: [AppComponent]
 })
