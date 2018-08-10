@@ -22,6 +22,12 @@
     <div class="nav-container">
         <ul class="navigation">
             <!-- First level menu -->
+            <li>
+                <a routerLink="/team">
+                    <span class="menu-title">[AGLF] My Team</span>
+                </a>
+            </li>
+
              <li *ngFor="let menuItem of menuItems" [ngClass]="[menuItem.class]" [routerLinkActive]="menuItem.submenu.length != 0 ? '' : 'active'"
                 [routerLinkActiveOptions]="{exact: true}">
                 <a [routerLink]="menuItem.class === '' ? [menuItem.path] : null" *ngIf="!menuItem.isExternalLink; else externalLinkBlock">
