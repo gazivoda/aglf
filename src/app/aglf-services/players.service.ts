@@ -13,7 +13,7 @@ export class PlayersService {
     constructor(private endpointService: EndpointService) {
     }
 
-    getPlayers(): Observable<any[]> {
+    getPlayers(): Observable<Player[]> {
         if (this._players$.value.length === 0) {
             this.endpointService.getAllPlayers()
                 .subscribe(players => this._players$.next(players));

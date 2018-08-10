@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, map, tap, switchMap, merge } from 'rxjs/operators';
 import { Player, Position } from 'app/aglf-classes/player';
+import { Team } from 'app/aglf-classes/team';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -43,16 +44,7 @@ export class PlayerSelectionComponent implements OnInit {
         value: Position.STRIKER
     }];
 
-    teams = [{
-        name: 'Juve',
-        id: 1
-    }, {
-        name: 'PSG',
-        id: 2
-    }, {
-        name: 'R. Madrid',
-        id: 3
-    }];
+    teams: Team[] = [];
 
     constructor() {
         this.playerSelectionForm = new FormGroup({
@@ -77,6 +69,11 @@ export class PlayerSelectionComponent implements OnInit {
 
     ngOnChanges() {
         this.filteredPlayers = this.players;
+        this.shufflePlayers();
+        this.teams = this.mapTeams(this.filteredPlayers);
+    }
+
+    shufflePlayers(): void {
         this.filteredPlayers.sort((p1, p2) => {
             if (p1.price > p2.price) {
                 return 1;
@@ -86,14 +83,16 @@ export class PlayerSelectionComponent implements OnInit {
                 return 0;
             }
         });
+    }
 
-        let teams = [];
+    mapTeams(players: Player[]): Team[] {
+        let teams: Team[] = [];
         this.players.forEach(player => {
             if (!teams.find(t => t.id === player.team.id)) {
                 teams.push(player.team);
             }
         })
-        this.teams = teams;
+        return teams;
     }
 
     search = (text$: Observable<string>) =>
