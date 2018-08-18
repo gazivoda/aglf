@@ -30,25 +30,25 @@ export class PlayerCardComponent implements OnInit {
         switch (index) {
             // GK1
             case 0:
-                this.x = -75;
-                this.y = 410;
+                this.x = -80;
+                this.y = 400;
                 break;
 
             // GK2
             case 1:
-                this.x = 75;
-                this.y = 410;
+                this.x = 80;
+                this.y = 400;
                 break;
 
             // D1
             case 2:
-                this.x = -290;
+                this.x = -260;
                 this.y = 280;
                 break;
 
             // D2
             case 3:
-                this.x = -140;
+                this.x = -130;
                 this.y = 280;
                 break;
 
@@ -60,13 +60,13 @@ export class PlayerCardComponent implements OnInit {
 
             // D4
             case 5:
-                this.x = 140;
+                this.x = 130;
                 this.y = 280;
                 break;
 
             // D5
             case 6:
-                this.x = 290;
+                this.x = 260;
                 this.y = 280;
                 break;
 

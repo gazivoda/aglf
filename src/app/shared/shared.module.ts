@@ -11,6 +11,7 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
 import { CustomizerComponent } from './customizer/customizer.component';
 import { NotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
 import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.directive";
+import { AglfComponentsModule } from 'app/aglf-components/aglf-components.module';
 
 
 @NgModule({
@@ -23,14 +24,15 @@ import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.direct
         NotificationSidebarComponent,
         ToggleFullscreenDirective,
         NgbModule,
-        TranslateModule
+        TranslateModule,
+        AglfComponentsModule
     ],
     imports: [
         RouterModule,
         CommonModule,
         NgbModule,
         TranslateModule
-        
+
     ],
     declarations: [
         FooterComponent,

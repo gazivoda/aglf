@@ -18,12 +18,13 @@ export class EndpointService {
     }
 
     private createAuthorizationHeader(headers: HttpHeaders): HttpHeaders {
-        return headers.append('Authorization', 'b48a76a844e699b8ad4313282b8be1cb');
+        return headers.append('Content-Type', 'application/json').append('Authorization', 'b48a76a844e699b8ad4313282b8be1cb');
     }
 
     getAllPlayers(): Observable<Player[]> {
         let headers: HttpHeaders = new HttpHeaders();
-        headers = this.createAuthorizationHeader(headers);
+        //headers = this.createAuthorizationHeader(headers);
+        headers.append('Content-Type', 'application/json').append('Authorization', 'b48a76a844e699b8ad4313282b8be1cb')
 
         return of(allPlayers.map(this.mapPlayerData));
         // return this.http

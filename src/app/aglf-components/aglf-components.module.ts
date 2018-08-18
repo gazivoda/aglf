@@ -7,18 +7,23 @@ import { PlayerCardComponent } from './player-card/player-card.component';
 import { TeamOverviewComponent } from './team-overview/team-overview.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AglfRoutingModule } from './aglf-routing.module';
 
 @NgModule({
     imports: [
         CommonModule,
         NgbModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AglfRoutingModule
     ],
     declarations: [
         PitchComponent,
         PlayerSelectionComponent,
         PlayerCardComponent,
+        TeamOverviewComponent
+    ],
+    exports: [
         TeamOverviewComponent
     ]
 })
