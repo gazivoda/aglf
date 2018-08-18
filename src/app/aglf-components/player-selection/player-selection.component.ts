@@ -20,6 +20,9 @@ export class PlayerSelectionComponent implements OnInit {
 
     filteredPlayers: Player[] = [];
 
+    selectedPriceIndex: number = 0;
+    priceRange: number[] = Array.apply(null, Array(22)).map((f, i) =>  i === 0 ? -1 : (3.5 + i * 0.5));
+
     @Output()
     selectPlayerEventEmitter: EventEmitter<Player> = new EventEmitter<Player>();
 
@@ -49,12 +52,14 @@ export class PlayerSelectionComponent implements OnInit {
     constructor() {
         this.playerSelectionForm = new FormGroup({
             fullName: new FormControl(''),
-            playersFilter: new FormControl(this.positions[0])
+            playersFilter: new FormControl(this.positions[0]),
+            priceFilter: new FormControl(this.priceRange[0])
         });
     }
 
     ngOnInit() {
         this.playerSelectionForm.valueChanges.subscribe(values => {
+            console.log(values);
             if (values.playersFilter.id === undefined) {
                 if (values.playersFilter.value === 0) {
                     this.filteredPlayers = this.players.filter(p => p.fullName.toLowerCase().indexOf(values.fullName.toLowerCase()) > -1);
@@ -63,6 +68,12 @@ export class PlayerSelectionComponent implements OnInit {
                 }
             } else {
                 this.filteredPlayers = this.players.filter(p => ((p.fullName.toLowerCase().indexOf(values.fullName.toLowerCase()) > -1) && p.team.id === values.playersFilter.id));
+            }
+            console.log(this.filteredPlayers);
+            if (values.priceFilter === -1) {
+                this.filteredPlayers = this.filteredPlayers.filter(p => p.price > 0);
+            } else {
+                this.filteredPlayers = this.filteredPlayers.filter(p => p.price <= values.priceFilter);
             }
         });
     }

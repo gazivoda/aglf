@@ -5,5 +5,5 @@
 
 export const environment = {
     production: false,
-    apiEndpoint: 'http://142.93.100.51:8080/aglf/rest' // http://localhost:8080/aglf/rest
+    apiEndpoint: 'http://142.93.100.51:8080' // http://localhost:8080/aglf/rest
 };
