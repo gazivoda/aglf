@@ -17,7 +17,7 @@ export class RegisterPageComponent {
   }
 
   onSubmit() {
-    conosle.log('SUBMIT', this.registerForm.value.inputEmail, this.registerForm.value.inputPass);
+    console.log('SUBMIT', this.registerForm.value.inputEmail, this.registerForm.value.inputPass);
     this.authService.signupUser(this.registerForm.value.inputEmail, this.registerForm.value.inputPass).subscribe(val => {
       console.log('&&&&&&& VAL', val);
     }, err => {
