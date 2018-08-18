@@ -18,13 +18,13 @@ export class RegisterPageComponent {
 
   onSubmit() {
     console.log('SUBMIT', this.registerForm.value.inputEmail, this.registerForm.value.inputPass);
-    this.authService.signupUser(this.registerForm.value.inputEmail, this.registerForm.value.inputPass).subscribe(val => {
-      console.log('&&&&&&& VAL', val);
+    this.authService.signupUser(this.registerForm.value.inputEmail, this.registerForm.value.inputPass).subscribe(() => {
     }, err => {
-      console.log('&&&&&&& ERR', err);
-      this.registerForm.reset();
-      this.authService.setToken(err.error.text);
-      this.router.navigate(['dashboard/dashboard1']);
+      if (err.status === 200) {
+        this.registerForm.reset();
+        this.authService.setToken(err.error.text);
+        this.router.navigate(['dashboard/dashboard1']);
+      }
     });
 
   }
