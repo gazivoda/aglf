@@ -24,7 +24,8 @@ import { AglfRoutingModule } from './aglf-routing.module';
         TeamOverviewComponent
     ],
     exports: [
-        TeamOverviewComponent
+        TeamOverviewComponent,
+        AglfRoutingModule
     ]
 })
 export class AglfComponentsModule { }
