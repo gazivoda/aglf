@@ -77,6 +77,6 @@ export const Full_ROUTES: Routes = [
 },
 {
   path: 'team',
-  loadChildren: '../../aglf-components/aglf-components.module#AglfComponentsModule'
+  loadChildren: './aglf-components/aglf-components.module#AglfComponentsModule'
 }
 ];

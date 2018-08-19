@@ -8,8 +8,6 @@ import {Full_ROUTES} from "./shared/routes/full-layout.routes";
 import {CONTENT_ROUTES} from "./shared/routes/content-layout.routes";
 
 import {AuthGuard} from './shared/auth/auth-guard.service';
-
-import {TeamOverviewComponent} from 'app/aglf-components/team-overview/team-overview.component';
 import {LoginPageComponent} from './pages/content-pages/login/login-page.component';
 
 const appRoutes: Routes = [
