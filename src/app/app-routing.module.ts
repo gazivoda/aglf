@@ -35,10 +35,6 @@ const appRoutes: Routes = [
     data: {title: 'content Views'},
     children: CONTENT_ROUTES,
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'team',
-    component: TeamOverviewComponent
   }
 ];
 

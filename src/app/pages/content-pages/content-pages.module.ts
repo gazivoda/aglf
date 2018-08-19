@@ -27,7 +27,10 @@ import {RegisterPageComponent} from "./register/register-page.component";
     LoginPageComponent,
     MaintenancePageComponent,
     RegisterPageComponent
-  ]
+],
+exports: [
+    LoginPageComponent
+]
 })
 export class ContentPagesModule {
 }

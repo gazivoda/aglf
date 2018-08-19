@@ -22,6 +22,11 @@
                         <option *ngFor="let t of teams; let i=index" [ngValue]="t" [selected]="selectedIndex === i + positions.length">{{ t.name }}</option>
                     </select>
                 </fieldset>
+                <fieldset class="form-group position-relative">
+                    <select class="form-control form-control-xl" formControlName="priceFilter">
+                        <option *ngFor="let p of priceRange; let i=index" [ngValue]="p" [selected]="selectedPriceIndex === i">{{ p === -1 ? 'Unlimited' : p | currency }}</option>
+                    </select>
+                </fieldset>
             </form>
         <div class="form-group players-list">
           <div class="list-group">
@@ -29,7 +34,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

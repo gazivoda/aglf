@@ -38,7 +38,7 @@ export class Player {
                 id: player.id || null,
                 firstName: player.firstName || null,
                 lastName: player.lastName || null,
-                fullName: player.firstName && player.lastName ? player.firstName + ' ' + player.lastName : null,
+                fullName: player.lastName ? player.firstName + ' ' + player.lastName : player.firstName,
                 photoUrl: player.photoUrl || null,
                 position: player.position || null,
                 number: player.number || null,

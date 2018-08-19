@@ -5,10 +5,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-9">
+    <div class="col-sm-12 col-md-8">
       <app-pitch [selectedPlayers]="selectedPlayers"></app-pitch>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-12 col-md-4">
       <app-player-selection [players]="players" (selectPlayerEventEmitter)="selectPlayerEventHandler($event)"></app-player-selection>
     </div>
   </div>

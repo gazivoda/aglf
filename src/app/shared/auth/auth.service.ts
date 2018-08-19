@@ -1,54 +1,60 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map'
-import {environment as env} from 'environments/environment';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment as env } from 'environments/environment';
 
 const API_ENDPOINT = env.apiEndpoint;
 
 @Injectable()
 export class AuthService {
-  token: string = null;
 
-  constructor(private http: HttpClient) {
-  }
+    token: string = null;
 
-  signupUser(email: string, password: string): Observable<any> {
-    return this.http
-      .post(API_ENDPOINT + '/user/signUp', {
-        'username': email,
-        'password': password
-      });
-  }
+    constructor(private http: HttpClient) {
+    }
 
-  signinUser(email: string, password: string): Observable<any> {
-    return this.http
-      .get(API_ENDPOINT + '/user/login?username=' + email + '&password=' + password);
-  }
+    signupUser(email: string, password: string): Observable<any> {
+      return this.http
+        .post(API_ENDPOINT + '/user/signUp', {
+          'username': email,
+          'password': password
+        })
+        .pipe(
+            map((res: any) => res)
+        );;
+    }
 
-  logout() {
-    console.log('@ localStorage logout');
-    localStorage.removeItem('token');
-    this.token = null;
-  }
+    signinUser(email: string, password: string): Observable<any> {
+        return this.http
+            .get(API_ENDPOINT + '/user/login?username=' + email + '&password=' + password)
+            .pipe(
+                map((res: any) => res)
+            );
+    }
 
-  getToken() {
-    console.log('@ localStorage getToken');
-    this.token = localStorage.getItem('token');
-    return this.token;
-  }
+    logout() {
+        console.log('@ localStorage logout');
+        localStorage.removeItem('token');
+        this.token = null;
+    }
 
-  setToken(token: string) {
-    console.log('@ localStorage setToken');
-    this.token = token;
-    localStorage.setItem('token', token);
-  }
+    getToken() {
+        console.log('@ localStorage getToken');
+        this.token = localStorage.getItem('token');
+        return this.token;
+    }
 
-  isAuthenticated() {
-    console.log('@ localStorage isAuthenticated');
-    this.token = localStorage.getItem('token');
-    console.log('@ localStorage IS', this.token);
-    return this.token !== null;
-  }
+    setToken(token: string) {
+        console.log('@ localStorage setToken');
+        this.token = token;
+        localStorage.setItem('token', token);
+    }
+
+    isAuthenticated() {
+      console.log('@ localStorage isAuthenticated');
+      this.token = localStorage.getItem('token');
+      console.log('@ localStorage IS', this.token);
+      return this.token !== null;
+    }
 }
