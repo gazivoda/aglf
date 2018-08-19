@@ -1,5 +1,4 @@
 
-
 #flags ul li {
   float: left;
   width: 54px;
@@ -13,6 +12,7 @@
 #flags ul li:hover {
   transform: scale(1.2);
 }
+
 #flags ul {
   text-align: center;
   display: table;
@@ -32,4 +32,10 @@ ul {
   width: 36px;
   height: 36px;
   margin: 5.5px auto;
+}
+
+@media (max-width: 991px) {
+  #flags {
+    display: none;
+  }
 }
