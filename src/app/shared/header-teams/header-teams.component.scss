@@ -1,0 +1,35 @@
+
+
+#flags ul li {
+  float: left;
+  width: 54px;
+  height: 47px;
+  margin: 0 10px;
+  background: url(http://uae2.agleague.ae/skin/agl/en/images/bgflag.png) no-repeat top center;
+  text-align: center;
+  transition: all .1s ease-in-out;
+}
+
+#flags ul li:hover {
+  transform: scale(1.2);
+}
+#flags ul {
+  text-align: center;
+  display: table;
+  margin: 15px auto;
+}
+
+ul {
+  list-style: none;
+}
+
+.stick-header #flags ul li {
+  background: url(http://uae2.agleague.ae/skin/agl/en/images/bgflag.png) no-repeat top center;
+
+}
+
+#flags ul li img {
+  width: 36px;
+  height: 36px;
+  margin: 5.5px auto;
+}
