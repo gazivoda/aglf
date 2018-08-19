@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {AuthService} from '../auth/auth.service';
 import {Router} from "@angular/router";
-import {HeaderTeamsComponent} from '../header-teams/header-teams.component';
 
 @Component({
   selector: 'app-navbar',

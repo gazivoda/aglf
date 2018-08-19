@@ -5,7 +5,7 @@ import { PitchComponent } from './pitch/pitch.component';
 import { PlayerSelectionComponent } from './player-selection/player-selection.component';
 import { PlayerCardComponent } from './player-card/player-card.component';
 import { TeamOverviewComponent } from './team-overview/team-overview.component';
-import { HeaderTeamsComponent } from './header-teams/header-teams.component';
+import { TeamsHeaderComponent } from './teams-header/teams-header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AglfRoutingModule } from './aglf-routing.module';
@@ -23,11 +23,11 @@ import { AglfRoutingModule } from './aglf-routing.module';
         PlayerSelectionComponent,
         PlayerCardComponent,
         TeamOverviewComponent,
-        HeaderTeamsComponent
+        TeamsHeaderComponent
     ],
     exports: [
         TeamOverviewComponent,
-        HeaderTeamsComponent,
+        TeamsHeaderComponent,
         AglfRoutingModule
     ]
 })
