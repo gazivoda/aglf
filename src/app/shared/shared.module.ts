@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
+import {NgModule} from '@angular/core';
+import {CommonModule} from "@angular/common";
+import {RouterModule} from "@angular/router";
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {TranslateModule} from '@ngx-translate/core';
 
 import { FooterComponent } from "./footer/footer.component";
 import { NavbarComponent } from "./navbar/navbar.component";
@@ -31,8 +31,8 @@ import { AglfComponentsModule } from 'app/aglf-components/aglf-components.module
         RouterModule,
         CommonModule,
         NgbModule,
-        TranslateModule
-
+        TranslateModule,
+        AglfComponentsModule
     ],
     declarations: [
         FooterComponent,
@@ -43,4 +43,5 @@ import { AglfComponentsModule } from 'app/aglf-components/aglf-components.module
         ToggleFullscreenDirective
     ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

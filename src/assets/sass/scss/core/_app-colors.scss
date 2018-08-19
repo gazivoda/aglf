@@ -615,7 +615,7 @@ $gradient-colors: (
     'start-color' : #8137F7,
       'end-color' : #F6AB3E,
   ),
-  
+
 
 
 
@@ -689,8 +689,12 @@ $gradient-colors: (
         'end-color' : #1CE5B7,
   ),
   gradient-flickr: (
-      'start-color' : #33001b,
-        'end-color' : #ff0084,
+    'start-color' : #33001b,
+    'end-color' : #ff0084,
+  ),
+  gradient-aglf: (
+    'start-color' : white,
+    'end-color' : red,
   ),
   gradient-virgin-america: (
       'start-color' : #7b4397,
@@ -724,5 +728,5 @@ $gradient-colors: (
       'start-color' : #cc2b5e,
         'end-color' : #753a88,
   )
-  
+
 );

@@ -8,27 +8,28 @@ const API_ENDPOINT = env.apiEndpoint;
 
 @Injectable()
 export class AuthService {
+
     token: string = null;
 
     constructor(private http: HttpClient) {
     }
 
-    signupUser(email: string, password: string): Observable<boolean> {
-        return this.http
-            .post(API_ENDPOINT + '/user/signUp', {
-                'username': email,
-                'password': password
-            })
-            .pipe(
-                map((res: any) => res.status === 200)
-            );
+    signupUser(email: string, password: string): Observable<any> {
+      return this.http
+        .post(API_ENDPOINT + '/user/signUp', {
+          'username': email,
+          'password': password
+        })
+        .pipe(
+            map((res: any) => res)
+        );;
     }
 
-    signinUser(email: string, password: string): Observable<boolean> {
+    signinUser(email: string, password: string): Observable<any> {
         return this.http
             .get(API_ENDPOINT + '/user/login?username=' + email + '&password=' + password)
             .pipe(
-                map((res: any) => res.status === 200)
+                map((res: any) => res)
             );
     }
 
@@ -51,9 +52,9 @@ export class AuthService {
     }
 
     isAuthenticated() {
-        console.log('@ localStorage isAuthenticated');
-        this.token = localStorage.getItem('token');
-        console.log('@ localStorage IS', this.token);
-        return this.token !== null;
+      console.log('@ localStorage isAuthenticated');
+      this.token = localStorage.getItem('token');
+      console.log('@ localStorage IS', this.token);
+      return this.token !== null;
     }
 }
