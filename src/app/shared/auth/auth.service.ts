@@ -22,12 +22,15 @@ export class AuthService {
         })
         .pipe(
             map((res: any) => res)
-        );;
+        );
     }
 
     signinUser(email: string, password: string): Observable<any> {
         return this.http
-            .get(API_ENDPOINT + '/user/login?username=' + email + '&password=' + password)
+            .post(API_ENDPOINT + '/user/login',{
+              'username': email,
+              'password': password
+            })
             .pipe(
                 map((res: any) => res)
             );

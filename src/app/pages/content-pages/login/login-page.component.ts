@@ -23,13 +23,10 @@ export class LoginPageComponent {
 
   // On submit button click
   onSubmit() {
-    this.authService.signinUser(this.loginForm.value.inputEmail, this.loginForm.value.inputPass).subscribe(() => {
-    }, err => {
-      if (err.status === 200) {
-        this.loginForm.reset();
-        this.authService.setToken(err.error.text);
-        this.router.navigate(['dashboard/dashboard1']);
-      }
+    this.authService.signinUser(this.loginForm.value.inputEmail, this.loginForm.value.inputPass).subscribe((data) => {
+      this.loginForm.reset();
+      this.authService.setToken(data.token);
+      this.router.navigate(['dashboard/dashboard1']);
     });
   }
 
