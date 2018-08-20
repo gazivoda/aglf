@@ -42,13 +42,13 @@ export class PlayerCardComponent implements OnInit {
 
             // D1
             case 2:
-                this.x = -260;
+                this.x = -280;
                 this.y = 280;
                 break;
 
             // D2
             case 3:
-                this.x = -130;
+                this.x = -150;
                 this.y = 280;
                 break;
 
@@ -60,13 +60,13 @@ export class PlayerCardComponent implements OnInit {
 
             // D4
             case 5:
-                this.x = 130;
+                this.x = 150;
                 this.y = 280;
                 break;
 
             // D5
             case 6:
-                this.x = 260;
+                this.x = 280;
                 this.y = 280;
                 break;
 
@@ -102,7 +102,7 @@ export class PlayerCardComponent implements OnInit {
 
             // F1
             case 12:
-                this.x = -110;
+                this.x = -120;
                 this.y = -190;
                 break;
 
@@ -114,7 +114,7 @@ export class PlayerCardComponent implements OnInit {
 
             // F3
             case 14:
-                this.x = 110;
+                this.x = 120;
                 this.y = -190;
                 break;
         }

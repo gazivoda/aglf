@@ -132,13 +132,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   z-index: 4;
   overflow: hidden;
-  border-radius: 32.5px;
-  background-color: #000;
-  border: solid 1px #fff;
+  background-color: transparent;
   transition: all 0.2s;
 }
 

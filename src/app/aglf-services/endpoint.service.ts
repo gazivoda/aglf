@@ -24,13 +24,13 @@ export class EndpointService {
         let headers: HttpHeaders = new HttpHeaders();
         headers = this.createAuthorizationHeader(headers);
 
-        //return of(ALL_PLAYERS.map(this.mapPlayerData));
-        return this.http
-            .get(API_ENDPOINT + '/player/getAll', { headers })
-            .pipe(
-                map((data: any[]) => data.map(this.mapPlayerData)),
-                catchError(this.handleError)
-            );
+        return of(ALL_PLAYERS.map(this.mapPlayerData));
+        // return this.http
+        //     .get(API_ENDPOINT + '/player/getAll', { headers })
+        //     .pipe(
+        //         map((data: any[]) => data.map(this.mapPlayerData)),
+        //         catchError(this.handleError)
+        //     );
     }
 
     private handleError(error) {
@@ -46,7 +46,8 @@ export class EndpointService {
             price: data.price,
             team: new Team({
                 id: data.teamId,
-                name: data.teamName
+                name: data.teamName,
+                jerseyUrl: data.jerseyUrl
             })
         });
     }
