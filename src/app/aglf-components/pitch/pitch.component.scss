@@ -1,7 +1,8 @@
 .stage {
   width: 100%;
   height: 100%;
-  max-width: 550px;
+  max-width: 650px;
+  margin: 40px auto;
   perspective-origin: 50% -1400px;
   perspective: 1800px;
   z-index: 1;
@@ -48,7 +49,7 @@
 }
 
 .field__side {
-    position: relative;
+  position: relative;
   top: 310px;
   left: 0;
   width: 100%;
@@ -182,7 +183,7 @@
 }
 
 .team {
-    position: relative;
-    top: 55%;
-    z-index: 29;
+  position: relative;
+  top: 55%;
+  z-index: 29;
 }
