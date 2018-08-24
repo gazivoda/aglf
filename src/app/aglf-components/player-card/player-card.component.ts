@@ -30,92 +30,92 @@ export class PlayerCardComponent implements OnInit {
         switch (index) {
             // GK1
             case 0:
-                this.x = -80;
+                this.x = -120;
                 this.y = 400;
                 break;
 
             // GK2
             case 1:
-                this.x = 80;
+                this.x = 120;
                 this.y = 400;
                 break;
 
             // D1
             case 2:
-                this.x = -280;
-                this.y = 280;
+                this.x = -380;
+                this.y = 250;
                 break;
 
             // D2
             case 3:
-                this.x = -150;
-                this.y = 280;
+                this.x = -180;
+                this.y = 250;
                 break;
 
             // D3
             case 4:
                 this.x = 0;
-                this.y = 280;
+                this.y = 250;
                 break;
 
             // D4
             case 5:
-                this.x = 150;
-                this.y = 280;
+                this.x = 180;
+                this.y = 250;
                 break;
 
             // D5
             case 6:
-                this.x = 280;
-                this.y = 280;
+                this.x = 380;
+                this.y = 250;
                 break;
 
             // M1
             case 7:
-                this.x = -270;
-                this.y = 40;
+                this.x = -380;
+                this.y = 50;
                 break;
 
             // M2
             case 8:
-                this.x = -140;
-                this.y = 40;
+                this.x = -180;
+                this.y = 50;
                 break;
 
             // M3
             case 9:
                 this.x = 0;
-                this.y = 40;
+                this.y = 50;
                 break;
 
             // M4
             case 10:
-                this.x = 140;
-                this.y = 40;
+                this.x = 180;
+                this.y = 50;
                 break;
 
             // M5
             case 11:
-                this.x = 270;
-                this.y = 40;
+                this.x = 380;
+                this.y = 50;
                 break;
 
             // F1
             case 12:
-                this.x = -120;
-                this.y = -190;
+                this.x = -180;
+                this.y = -150;
                 break;
 
             // F2
             case 13:
                 this.x = 0;
-                this.y = -190;
+                this.y = -150;
                 break;
 
             // F3
             case 14:
-                this.x = 120;
-                this.y = -190;
+                this.x = 180;
+                this.y = -150;
                 break;
         }
     }
