@@ -1,5 +1,5 @@
 .player {
-  transition: all 0.2s;
+  transition: all 0.1s;
   position: absolute;
   height: 88px;
   width: 65px;
@@ -9,7 +9,6 @@
   margin-left: -32.5px;
   bottom: 50%;
   transform-style: preserve-3d;
-  transition: all 0.2s;
   cursor: pointer;
   display: block;
 }
