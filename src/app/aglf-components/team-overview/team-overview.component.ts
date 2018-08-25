@@ -21,7 +21,6 @@ export class TeamOverviewComponent implements OnInit {
     constructor(private playersService: PlayersService, private userService: UserService) { }
 
     ngOnInit() {
-
         this.userService.getUserDetails()
             .subscribe((data: any) => {
                 let selectedPlayers = data.players;
@@ -32,23 +31,28 @@ export class TeamOverviewComponent implements OnInit {
             .pipe(
                 takeUntil(this._destroyed$)
             )
-            .subscribe(players => {
+            .subscribe((players: Player[]) => {
                 this.players = players;
+
+                if (players.length > 0) {
+                    let prices = players.map(player => player.price).filter(p => p !== null);
+                    console.log(Math.max(...prices), Math.min(...prices));
+                }
             });
 
         this.userService.getSelectedPlayers()
             .pipe(
                 takeUntil(this._destroyed$)
             )
-            .subscribe(players => {
-                this.selectedPlayers = players;
+            .subscribe((selectedPlayers: Player[]) => {
+                this.selectedPlayers = selectedPlayers;
             });
 
         this.userService.getBudget()
             .pipe(
                 takeUntil(this._destroyed$)
             )
-            .subscribe(budget => {
+            .subscribe((budget: number) => {
                 this.budget = budget;
             });
     }
