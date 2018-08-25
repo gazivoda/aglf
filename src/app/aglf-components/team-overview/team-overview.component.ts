@@ -21,6 +21,13 @@ export class TeamOverviewComponent implements OnInit {
     constructor(private playersService: PlayersService, private userService: UserService) { }
 
     ngOnInit() {
+
+        this.userService.getUserDetails()
+            .subscribe((data: any) => {
+                let selectedPlayers = data.players;
+                this.userService.setSelectedPlayers(selectedPlayers);
+            });
+
         this.playersService.getPlayers()
             .pipe(
                 takeUntil(this._destroyed$)
@@ -53,7 +60,7 @@ export class TeamOverviewComponent implements OnInit {
 
     selectPlayerEventHandler(player: Player) {
         if (player instanceof Player) {
-            this.userService.addPlayer(player);
+            this.userService.addPlayer(player, true);
         }
     }
 }

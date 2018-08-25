@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Player, Position } from 'app/aglf-classes/player';
+import { Player, Position, PlayerData } from 'app/aglf-classes/player';
 import { EndpointService } from 'app/aglf-services/endpoint.service';
 
 @Injectable({
@@ -20,5 +20,10 @@ export class PlayersService {
         }
 
         return this._players$.asObservable();
+    }
+
+    setPlayers(playersData: PlayerData[]): Observable<any> {
+        playersData = playersData.filter(data => data !== null);
+        return this.endpointService.setPlayers(playersData);
     }
 }
