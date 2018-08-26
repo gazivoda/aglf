@@ -8,8 +8,8 @@ export const ROUTES: RouteInfo[] = [
     title: 'My Team',
     icon: 'ft-users',
     class: '',
-    // badge: '15',
-    // badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
+    badge: '15',
+    badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
     isExternalLink: false,
     submenu: []
   },

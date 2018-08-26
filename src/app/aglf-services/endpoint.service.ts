@@ -11,64 +11,77 @@ const API_ENDPOINT = env.apiEndpoint;
 @Injectable()
 export class EndpointService {
 
-    constructor(private http: HttpClient, private authService: AuthService) {
-    }
+  constructor(private http: HttpClient, private authService: AuthService) {
+  }
 
-    private createAuthorizationHeader(headers: HttpHeaders): HttpHeaders {
-        return headers.append('Authorization', this.authService.getToken());
-    }
+  private createAuthorizationHeader(headers: HttpHeaders): HttpHeaders {
+    return headers.append('Authorization', this.authService.getToken());
+  }
 
   getAllPlayers(): Observable<Player[]> {
-        let headers: HttpHeaders = new HttpHeaders();
-        headers = this.createAuthorizationHeader(headers);
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
 
-        return this.http
-            .get(API_ENDPOINT + '/player/getAll', { headers })
-            .pipe(
-                map((data: any[]) => data.map(mapPlayerData)),
-                catchError(this.handleError)
-            );
-    }
+    return this.http
+      .get(API_ENDPOINT + '/player/getAll', {headers})
+      .pipe(
+        map((data: any[]) => data.map(mapPlayerData)),
+        catchError(this.handleError)
+      );
+  }
 
-    setPlayers(playersData: PlayerData[]): Observable<any> {
-        let headers: HttpHeaders = new HttpHeaders();
-        headers = this.createAuthorizationHeader(headers);
+  getTopUsers(): Observable<any[]> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
 
-        return this.http
-            .post(API_ENDPOINT + '/player/setPlayers', playersData, { headers: headers })
-            .pipe(
-                map(res => <any>res),
-                catchError(this.handleError)
-            );
-    }
+    return this.http
+      .get(API_ENDPOINT + '/user/getTopUsers', {headers})
+      .pipe(
+        map(data => <any>data),
+        catchError(this.handleError)
+      );
 
-    getUserDetails(userId?: number): Observable<any> {
-        let headers: HttpHeaders = new HttpHeaders();
-        headers = this.createAuthorizationHeader(headers);
+  }
 
-        let options;
-        if (userId) {
-            options = {
-                headers: headers,
-                params: {
-                    userId: userId
-                }
-            }
-        } else {
-            options = {
-                headers: headers
-            }
+  setPlayers(playersData: PlayerData[]): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
+
+    return this.http
+      .post(API_ENDPOINT + '/player/setPlayers', playersData, {headers: headers})
+      .pipe(
+        map(res => <any>res),
+        catchError(this.handleError)
+      );
+  }
+
+  getUserDetails(userId?: number): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
+
+    let options;
+    if (userId) {
+      options = {
+        headers: headers,
+        params: {
+          userId: userId
         }
-
-        return this.http
-            .get(API_ENDPOINT + '/user/getUserDetails', options)
-            .pipe(
-                map(data => <any>data),
-                catchError(this.handleError)
-            );
+      }
+    } else {
+      options = {
+        headers: headers
+      }
     }
 
-    private handleError(error) {
-        return throwError(error);
-    }
+    return this.http
+      .get(API_ENDPOINT + '/user/getUserDetails', options)
+      .pipe(
+        map(data => <any>data),
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error) {
+    return throwError(error);
+  }
 }
