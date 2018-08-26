@@ -1,12 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { environment as env } from 'environments/environment';
-import { catchError, map } from 'rxjs/operators';
-import { Observable, throwError, of } from 'rxjs'
-import { Player, resolvePlayerPosition, PlayerData, mapPlayerData } from 'app/aglf-classes/player';
-import { Team } from 'app/aglf-classes/team';
-import { AuthService } from 'app/shared/auth/auth.service';
-import { ALL_PLAYERS } from 'app/aglf-mock/all-players';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment as env} from 'environments/environment';
+import {catchError, map} from 'rxjs/operators';
+import {Observable, throwError} from 'rxjs'
+import {mapPlayerData, Player, PlayerData} from 'app/aglf-classes/player';
+import {AuthService} from 'app/shared/auth/auth.service';
 
 const API_ENDPOINT = env.apiEndpoint;
 
@@ -20,7 +18,7 @@ export class EndpointService {
         return headers.append('Authorization', this.authService.getToken());
     }
 
-    getAllPlayers(): Observable<Player[]> {
+  getAllPlayers(): Observable<Player[]> {
         let headers: HttpHeaders = new HttpHeaders();
         headers = this.createAuthorizationHeader(headers);
 

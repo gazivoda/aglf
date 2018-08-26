@@ -21,11 +21,11 @@
   <div class="nav-container">
     <ul class="navigation">
       <!-- First level menu -->
-      <li>
-        <a routerLink="/team">
-          <span class="menu-title">[AGLF] My Team</span>
-        </a>
-      </li>
+      <!--<li>-->
+        <!--<a routerLink="/team">-->
+          <!--<span class="menu-title">My Team</span>-->
+        <!--</a>-->
+      <!--</li>-->
 
       <li *ngFor="let menuItem of menuItems" [ngClass]="[menuItem.class]"
           [routerLinkActive]="menuItem.submenu.length != 0 ? '' : 'active'"
