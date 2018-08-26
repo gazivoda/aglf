@@ -20,6 +20,21 @@ export function resolvePlayerPosition(position: string): Position {
     }
 }
 
+export function mapPlayerData(data: any): Player {
+    return new Player({
+        id: data.id,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        position: resolvePlayerPosition(data.position),
+        price: data.price,
+        team: new Team({
+            id: data.teamId,
+            name: data.teamName,
+            jerseyUrl: data.jerseyUrl
+        })
+    });
+}
+
 export class Player {
 
     id: number = null;
@@ -44,6 +59,24 @@ export class Player {
                 number: player.number || null,
                 price: player.price || null,
                 team: player.team || null
+            });
+        }
+    }
+}
+
+export class PlayerData {
+    id: number = null;
+    active: boolean = false;
+    captain: boolean = false;
+    viceCaptain: boolean = false;
+
+    constructor(data: any) {
+        if (data) {
+            Object.assign(this, {
+                id: data.id || null,
+                active: data.active || false,
+                captain: data.captain || false,
+                viceCaptain: data.viceCaptain || false
             });
         }
     }
