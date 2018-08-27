@@ -9,28 +9,44 @@
           <span (click)="onPlayerSearchChange(r)">{{ r.fullName}}</span>
         </ng-template>
         <div class="form-group" *ngIf="false">
-          <input type="text" class="form-control mb-3" [(ngModel)]="modelTemp" (change)="onPlayerSearchChange($event)" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" placeholder="Search for a player" />
+          <input type="text" class="form-control mb-3" [(ngModel)]="modelTemp" (change)="onPlayerSearchChange($event)"
+                 [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter"
+                 placeholder="Search for a player"/>
         </div>
-            <form  [formGroup]="playerSelectionForm">
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-xl mb-3" formControlName="fullName"  placeholder="Search for a player" />
-                </div>
-                <fieldset class="form-group position-relative">
-                    <select class="form-control form-control-xl" formControlName="playersFilter">
-                        <option *ngFor="let p of positions; let i=index" [ngValue]="p" [selected]="selectedIndex === p.value">{{ p.name }}</option>
-                        <option disabled><hr></option>
-                        <option *ngFor="let t of teams; let i=index" [ngValue]="t" [selected]="selectedIndex === i + positions.length">{{ t.name }}</option>
-                    </select>
-                </fieldset>
-                <fieldset class="form-group position-relative">
-                    <select class="form-control form-control-xl" formControlName="priceFilter">
-                        <option *ngFor="let p of priceRange; let i=index" [ngValue]="p" [selected]="selectedPriceIndex === i">{{ p === -1 ? 'Unlimited' : p | currency }}</option>
-                    </select>
-                </fieldset>
-            </form>
+        <form [formGroup]="playerSelectionForm">
+          <div class="form-group">
+            <input type="text" class="form-control form-control-xl mb-3" formControlName="fullName"
+                   placeholder="Search for a player"/>
+          </div>
+          <fieldset class="form-group position-relative">
+            <select class="form-control form-control-xl" formControlName="playersFilter">
+              <option *ngFor="let p of positions; let i=index" [ngValue]="p" [selected]="selectedIndex === p.value">{{
+                p.name }}
+              </option>
+              <option disabled>
+                <hr>
+              </option>
+              <option *ngFor="let t of teams; let i=index" [ngValue]="t"
+                      [selected]="selectedIndex === i + positions.length">{{ t.name }}
+              </option>
+            </select>
+          </fieldset>
+          <fieldset class="form-group position-relative">
+            <select class="form-control form-control-xl" formControlName="priceFilter">
+              <option *ngFor="let p of priceRange; let i=index" [ngValue]="p" [selected]="selectedPriceIndex === i">{{ p
+                === -1 ? 'Unlimited' : p | currency }}
+              </option>
+            </select>
+          </fieldset>
+        </form>
         <div class="form-group players-list">
           <div class="list-group">
-            <button type="button" class="list-group-item" *ngFor="let player of filteredPlayers" (click)="onPlayerSearchChange(player)">{{ player.fullName }}</button>
+            <button type="button" class="list-group-item" *ngFor="let player of filteredPlayers"
+                    (click)="onPlayerSearchChange(player)">
+              <img class="player-list-jersey"
+                   [src]="player ? player.team.jerseyUrl : '/assets/img/question-mark-80.png'">
+              {{ player.fullName }}
+            </button>
           </div>
         </div>
       </div>

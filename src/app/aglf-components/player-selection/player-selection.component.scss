@@ -1,8 +1,20 @@
 .players-list {
-    max-height: 600px;
-    overflow-y: scroll;
+  max-height: 600px;
+  overflow-y: scroll;
 }
 
 h4 {
-    color: #000;
+  color: #000;
+}
+
+.player-list-jersey {
+  height: 25px;
+  width: auto;
+  margin-right: 5px;
+}
+
+.list-group-item :hover {
+  background: #ec1d23;
+  color: white;
+  transition: background-color 0.3s ease;
 }
