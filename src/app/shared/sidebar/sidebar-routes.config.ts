@@ -44,7 +44,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/leaderboard',
+    path: '/team/leaderboard',
     title: 'Leaderboard',
     icon: 'ft-list',
     class: '',
@@ -1098,6 +1098,16 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     isExternalLink: true,
+    submenu: []
+  },
+  {
+    path: '/prizes',
+    title: 'Prizes',
+    icon: 'ft-award',
+    class: '',
+    badge: '',
+    badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
+    isExternalLink: false,
     submenu: []
   },
   {

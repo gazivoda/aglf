@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { TeamOverviewComponent } from './team-overview/team-overview.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {TeamOverviewComponent} from './team-overview/team-overview.component';
+import {LeaderboardOverviewComponent} from './leaderboard-overview/leaderboard-overview.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,13 @@ const routes: Routes = [
       {
         path: '',
         component: TeamOverviewComponent,
+        data: {
+          title: 'AGLF Team Overview'
+        }
+      },
+      {
+        path: 'leaderboard',
+        component: LeaderboardOverviewComponent,
         data: {
           title: 'AGLF Team Overview'
         }
@@ -21,4 +29,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AglfRoutingModule { }
+export class AglfRoutingModule {
+}

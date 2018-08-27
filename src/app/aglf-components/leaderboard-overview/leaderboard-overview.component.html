@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
+        </div>
+        <div class="aglf-header-right">
+          <h1 class="card-title">AGL Fantasy Leaderboard </h1>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table table-responsive-sm text-center">
+          <thead>
+          <tr>
+            <th>Captain Team</th>
+            <th>Player Name</th>
+            <th>Points</th>
+            <th>Status</th>
+            <th>Team value</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of topUsers">
+            <td>
+              <img class="item-image"
+                   [src]="captainImage(user.players) ? captainImage(user.players).jerseyUrl : '/assets/img/question-mark-80.png'">
+            </td>
+            <td>{{user.userName}}</td>
+            <td>{{user.score}}</td>
+            <td>
+              <a class="btn btn-raised btn-round btn-primary">Active</a>
+            </td>
+            <td>$ {{totalTeamCost(user.players)}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

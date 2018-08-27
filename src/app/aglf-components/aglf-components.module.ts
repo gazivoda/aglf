@@ -9,6 +9,7 @@ import { TeamsHeaderComponent } from './teams-header/teams-header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AglfRoutingModule } from './aglf-routing.module';
+import { LeaderboardOverviewComponent } from './leaderboard-overview/leaderboard-overview.component';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { AglfRoutingModule } from './aglf-routing.module';
         PlayerSelectionComponent,
         PlayerCardComponent,
         TeamOverviewComponent,
-        TeamsHeaderComponent
+        TeamsHeaderComponent,
+        LeaderboardOverviewComponent
     ],
     exports: [
         TeamOverviewComponent,
