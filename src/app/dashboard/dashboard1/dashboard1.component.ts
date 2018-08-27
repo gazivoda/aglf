@@ -66,6 +66,23 @@ export class Dashboard1Component {
     return 0;
   }
 
+  totalTeamCostByPlayer(players: any[]) {
+    if (players && players.length > 0) {
+      return players.map(player => player.price).reduce((a, c) => a + c);
+    }
+    return 0;
+  }
+
+  captainImage(players: any[]) {
+    if (players && players.length > 0 && players.find(player => player.captain)) {
+      return players.find(player => player.captain);
+    }
+    if (players.length > 0) {
+      return players.find(player => player.jerseyUrl !== '');
+    }
+    return null;
+  }
+
   getTeamRanking(topUsers: any[], userDetails: any) {
     return topUsers.indexOf(topUsers.find(user => user.userId === userDetails.userId)) + 1;
   }

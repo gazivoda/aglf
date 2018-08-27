@@ -91,144 +91,67 @@
 
 </div>
 <!--Statistics cards Ends-->
-<iframe
-  src="https://widgets.worldfootball.com/competition/419#?c_header=#ec1d23&columns=mp,mw,md,ml&height_unit=pixels&tabs=matches&width_unit=percent"
-  width="100%" height="450" frameborder="0"></iframe>
-<!--Line with Area Chart 1 Starts-->
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Team Score</h4>
-      </div>
-      <div class="card-body">
-        <div class="card-block">
-          <div class="chart-info mb-3 ml-3">
-            <span class="gradient-blackberry d-inline-block rounded-circle mr-1"
-                  style="width:15px; height:15px;"></span> Score
-            <span class="gradient-mint d-inline-block rounded-circle mr-1 ml-2" style="width:15px; height:15px;"></span>
-            Visits
-          </div>
-          <div id="line-area" class="height-350 lineArea">
-            <x-chartist [data]="lineArea.data" [type]="lineArea.type" [options]="lineArea.options"
-                        [responsiveOptions]="lineArea.responsiveOptions" [events]="lineArea.events">
-            </x-chartist>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--Line with Area Chart 1 Ends-->
+
 
 <div class="row" matchHeight="card">
-  <div class="col-xl-4 col-lg-12 col-12">
+  <div class="col-xl-8 col-lg-8 col-12" style="margin-top: -20px;">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Statistics</h4>
-      </div>
-      <div class="card-body">
-
-        <p class="font-medium-2 text-muted text-center pb-2">Last 6 Months Sales</p>
-        <div id="Stack-bar-chart" class="height-300 Stackbarchart mb-2">
-          <x-chartist class="" [data]="Stackbarchart.data" [type]="Stackbarchart.type" [options]="Stackbarchart.options"
-                      [responsiveOptions]="Stackbarchart.responsiveOptions" [events]="Stackbarchart.events">
-          </x-chartist>
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
         </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-8 col-lg-12 col-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Shopping Cart</h4>
+        <div class="aglf-header-right">
+          <h1 class="card-title">AGL Fantasy Leaderboard </h1>
+        </div>
       </div>
       <div class="card-body">
         <table class="table table-responsive-sm text-center">
           <thead>
           <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Quantity</th>
+            <th>Captain</th>
+            <th>Player Name</th>
+            <th>Points</th>
             <th>Status</th>
-            <th>Amount</th>
-            <th>Delete</th>
+            <th>Team value</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td><img class="media-object round-media height-50" src="assets/img/elements/01.png"
-                     alt="Generic placeholder image"/></td>
-            <td>Ferrero Rocher</td>
-            <td>1</td>
+          <tr *ngFor="let user of topUsers">
+            <td>
+              <img class="item-image"
+                   [src]="captainImage(user.players) ? captainImage(user.players).jerseyUrl : '/assets/img/question-mark-80.png'">
+              <span>{{captainImage(user.players)?captainImage(user.players).firstName:''}}
+                        {{captainImage(user.players)?captainImage(user.players).lastName:''}}     </span>
+            </td>
+            <td>{{user.userName}}</td>
+            <td>{{user.score}}</td>
             <td>
               <a class="btn btn-raised btn-round btn-primary">Active</a>
             </td>
-            <td>$19.94</td>
-            <td>
-              <a class="danger" data-original-title="" title="">
-                <i class="ft-x"></i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td><img class="media-object round-media height-50" src="assets/img/elements/07.png"
-                     alt="Generic placeholder image"/></td>
-            <td>Headphones</td>
-            <td>2</td>
-            <td>
-              <a class="btn btn-raised btn-round btn-danger">Disabled</a>
-            </td>
-            <td>$99.00</td>
-            <td>
-              <a class="danger" data-original-title="" title="">
-                <i class="ft-x"></i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td><img class="media-object round-media height-50" src="assets/img/elements/11.png"
-                     alt="Generic placeholder image"/></td>
-            <td>Camera</td>
-            <td>1</td>
-            <td>
-              <a class="btn btn-raised btn-round btn-info">Paused</a>
-            </td>
-            <td>$299.00</td>
-            <td>
-              <a class="danger" data-original-title="" title="">
-                <i class="ft-x"></i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td><img class="media-object round-media height-50" src="assets/img/elements/14.png"
-                     alt="Generic placeholder image"/></td>
-            <td>Beer</td>
-            <td>2</td>
-            <td>
-              <a class="btn btn-raised btn-round btn-success">Active</a>
-            </td>
-            <td>$24.51</td>
-            <td>
-              <a class="danger" data-original-title="" title="">
-                <i class="ft-x"></i>
-              </a>
-            </td>
+            <td>$ {{totalTeamCostByPlayer(user.players)}}</td>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+  <div class="col-xl-4 col-lg-4 col-12">
+    <iframe
+      src="https://widgets.worldfootball.com/competition/419#?c_header=#ec1d23&columns=mp,mw,md,ml&height_unit=pixels&tabs=matches&width_unit=percent"
+      width="100%" height="450" frameborder="0"></iframe>
+  </div>
 </div>
 
 <div class="row" matchHeight="card">
   <div class="col-xl-8 col-lg-12 col-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title mb-0">Visit & Sales Statistics</h4>
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
+        </div>
+        <div class="aglf-header-right">
+          <h1 class="card-title">AGL Fantasy Leaderboard </h1>
+        </div>
       </div>
       <div class="card-body">
         <div class="card-block">
@@ -275,7 +198,12 @@
   <div class="col-xl-4 col-lg-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Statistics</h4>
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
+        </div>
+        <div class="aglf-header-right">
+          <h1 class="card-title">AGL Fantasy Leaderboard </h1>
+        </div>
       </div>
       <div class="card-body">
 
@@ -320,7 +248,12 @@
   <div class="col-xl-4 col-lg-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title mb-0">User List</h4>
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
+        </div>
+        <div class="aglf-header-right">
+          <h1 class="card-title">AGL Fantasy Leaderboard </h1>
+        </div>
       </div>
       <div class="card-body">
         <div class="card-block">
@@ -414,7 +347,12 @@
   <div class="col-xl-4 col-lg-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Project Stats</h4>
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
+        </div>
+        <div class="aglf-header-right">
+          <h1 class="card-title">AGL Fantasy Leaderboard </h1>
+        </div>
       </div>
       <div class="card-body">
 
