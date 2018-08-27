@@ -187,3 +187,10 @@
   top: 55%;
   z-index: 29;
 }
+//TODO @grizli
+@media (max-width: 991px) {
+  .world {
+    transform: unset !important;
+    transform-style: unset;
+  }
+}
