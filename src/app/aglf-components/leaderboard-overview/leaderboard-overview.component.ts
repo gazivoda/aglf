@@ -26,11 +26,11 @@ export class LeaderboardOverviewComponent implements OnInit {
   }
 
   captainImage(players: any[]) {
-    if (players && players.length > 0) {
+    if (players && players.length > 0 && players.find(player => player.captain)) {
       return players.find(player => player.captain);
     }
     if (players.length > 0) {
-      return players[0];
+      return players.find(player => player.jerseyUrl !== '');
     }
     return null;
   }

@@ -13,7 +13,7 @@
         <table class="table table-responsive-sm text-center">
           <thead>
           <tr>
-            <th>Captain Team</th>
+            <th>Captain</th>
             <th>Player Name</th>
             <th>Points</th>
             <th>Status</th>
@@ -25,6 +25,8 @@
             <td>
               <img class="item-image"
                    [src]="captainImage(user.players) ? captainImage(user.players).jerseyUrl : '/assets/img/question-mark-80.png'">
+              <span>{{captainImage(user.players)?captainImage(user.players).firstName:''}}
+                            {{captainImage(user.players)?captainImage(user.players).lastName:''}}     </span>
             </td>
             <td>{{user.userName}}</td>
             <td>{{user.score}}</td>

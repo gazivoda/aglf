@@ -1,6 +1,7 @@
 .item-image {
   width: 26px;
   height: auto;
+  margin-right: 10px;
 }
 
 .aglf-header-left {
@@ -26,4 +27,8 @@
   border-left: solid 73px white;
   color: white;
   height: 25px;
+}
+
+.aglf-header-right h1 {
+  font-size: 17px !important;
 }
