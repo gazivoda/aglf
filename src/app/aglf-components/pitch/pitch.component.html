@@ -3,7 +3,8 @@
     <div class="team">
         <app-player-card *ngFor="let player of selectedPlayers; let i=index"
             [index]="i"
-            [player]="player"></app-player-card>
+            [player]="player"
+            (removePlayerEventEmitter)="removePlayerEventHandler($event)"></app-player-card>
     </div>
     <div class="terrain">
       <div class="field ground">

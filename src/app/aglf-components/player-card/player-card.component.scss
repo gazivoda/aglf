@@ -13,6 +13,25 @@
   display: block;
 }
 
+.player:hover {
+    .player__label span {
+        color: red;
+    }
+
+    .player__remove {
+        visibility: visible;
+    }
+}
+
+.player__remove {
+    visibility: hidden;
+    font-size: 22px;
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    color: red;
+}
+
 .player__placeholder {
   position: absolute;
   opacity: 0;

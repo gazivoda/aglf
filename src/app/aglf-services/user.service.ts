@@ -10,7 +10,7 @@ import { PlayersService } from 'app/aglf-services/players.service';
 export class UserService {
 
     private _selectedPlayers$: BehaviorSubject<Player[]> = new BehaviorSubject<Player[]>(new Array(15));
-    private _budget$: BehaviorSubject<number> = new BehaviorSubject<number>(1000);
+    private _budget$: BehaviorSubject<number> = new BehaviorSubject<number>(100);
 
     constructor(private endpointService: EndpointService, private playersService: PlayersService) {
 
@@ -33,6 +33,28 @@ export class UserService {
 
     getBudget(): Observable<number> {
         return this._budget$.asObservable();
+    }
+
+    removePlayer(player: Player) {
+        let selectedPlayers = this._selectedPlayers$.value;
+        let index: number = -1;
+        selectedPlayers.find((p: Player, i: number) => {
+            if (p && p.id === player.id) {
+                index = i;
+                return;
+            }
+        });
+        if (index > -1) {
+            selectedPlayers[index] = null;
+
+            this._selectedPlayers$.next(selectedPlayers);
+            this._budget$.next(this._budget$.value + player.price);
+
+            let playersData: PlayerData[] = selectedPlayers.filter((p: Player) => p !== null).map((player: Player) => new PlayerData({
+                id: player.id
+            }));
+            this.playersService.setPlayers(playersData).subscribe(res => console.log(res));
+        }
     }
 
     addPlayer(player: Player, update: boolean) {

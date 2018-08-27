@@ -1,15 +1,10 @@
 <section id="team-overview">
   <div class="row">
-    <div class="col-sm-12">
-      <div class="content-header">Budget: ${{ budget }}</div>
-    </div>
-  </div>
-  <div class="row">
     <div class="col-sm-12 col-md-8">
-      <app-pitch [selectedPlayers]="selectedPlayers"></app-pitch>
+      <app-pitch [selectedPlayers]="selectedPlayers" (removePlayerEventEmitter)="removePlayerEventHandler($event)"></app-pitch>
     </div>
     <div class="col-sm-12 col-md-4">
-      <app-player-selection [players]="players" (selectPlayerEventEmitter)="selectPlayerEventHandler($event)"></app-player-selection>
+      <app-player-selection [players]="players" [budget]="budget" (selectPlayerEventEmitter)="selectPlayerEventHandler($event)"></app-player-selection>
     </div>
   </div>
 </section>

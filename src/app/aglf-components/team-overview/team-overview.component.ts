@@ -67,4 +67,8 @@ export class TeamOverviewComponent implements OnInit {
             this.userService.addPlayer(player, true);
         }
     }
+
+    removePlayerEventHandler(player: Player) {
+        this.userService.removePlayer(player);
+    }
 }

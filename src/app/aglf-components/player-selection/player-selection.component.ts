@@ -18,6 +18,9 @@ export class PlayerSelectionComponent implements OnInit {
     @Input()
     players: Player[] = [];
 
+    @Input()
+    budget: number = 0;
+
     filteredPlayers: Player[] = [];
 
     selectedPriceIndex: number = 0;

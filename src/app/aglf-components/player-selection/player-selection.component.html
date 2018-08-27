@@ -2,6 +2,7 @@
   <div class="card">
     <div class="card-header">
       <h4 class="card-title text-uppercase mb-0 text-bold-400 black">Player selection</h4>
+      <p class="h6">{{ budget | currency }}</p>
     </div>
     <div class="card-body">
       <div class="card-block">
@@ -41,7 +42,7 @@
         </form>
         <div class="form-group players-list">
           <div class="list-group">
-            <button type="button" class="list-group-item" *ngFor="let player of filteredPlayers"
+            <button type="button" class="list-group-item player-item" *ngFor="let player of filteredPlayers"
                     (click)="onPlayerSearchChange(player)">
               <img class="player-list-jersey"
                    [src]="player ? player.team.jerseyUrl : '/assets/img/question-mark-80.png'">
