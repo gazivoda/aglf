@@ -106,8 +106,9 @@
       </div>
       <div class="card-body">
         <table class="table table-responsive-sm text-center">
-          <thead>
+          <thead align="left">
           <tr>
+            <th></th>
             <th>Captain</th>
             <th>Player Name</th>
             <th>Points</th>
@@ -115,11 +116,13 @@
             <th>Team value</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody align="left">
           <tr *ngFor="let user of topUsers">
-            <td>
+            <td align="right">
               <img class="item-image"
                    [src]="captainImage(user.players) ? captainImage(user.players).jerseyUrl : '/assets/img/question-mark-80.png'">
+            </td>
+            <td>
               <span>{{captainImage(user.players)?captainImage(user.players).firstName:''}}
                         {{captainImage(user.players)?captainImage(user.players).lastName:''}}     </span>
             </td>
@@ -169,18 +172,15 @@
     </div>
   </div>
   <div class="col-xl-4 col-lg-12 col-12">
-    <div class="card gradient-blackberry">
+    <div class="card gradient-ibiza-sunset">
       <div class="card-body">
         <div class="card-block">
-          <h4 class="card-title white">Statistics</h4>
+          <h4 class="card-title white">Team progress</h4>
           <div class="p-2 text-center">
-            <a class="white font-medium-1">Month</a>
-            <a class="btn btn-raised btn-round bg-white mx-3 px-3">Week</a>
-            <a class="white font-medium-1">Day</a>
+            <a class="btn btn-raised btn-round bg-white mx-3 px-3">Round</a>
           </div>
           <div class="my-3 text-center white">
-            <a class="font-large-2 d-block mb-1">$ 78.89 <span class="ft-arrow-up font-large-2"></span></a>
-            <span class="font-medium-1">Week2   +15.44</span>
+            <a class="font-large-2 d-block mb-1">15 Points<span class="ft-arrow-up font-large-2"></span></a>
           </div>
         </div>
         <div id="lineChart" class="height-250 lineChart lineChartShadow">
