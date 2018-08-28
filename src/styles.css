@@ -13,3 +13,7 @@ body {
   background: whitesmoke;
   font-family: 'Open Sans', helvetica, arial, sans-serif;
 }
+
+.table td, .table th {
+  border-top: none !important;
+}
