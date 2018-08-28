@@ -43,7 +43,7 @@
         <div class="form-group players-list">
           <div class="list-group">
             <button type="button" class="list-group-item player-item" *ngFor="let player of filteredPlayers"
-                    (click)="onPlayerSearchChange(player)">
+                    (click)="selectPlayer(player)">
               <img class="player-list-jersey"
                    [src]="player ? player.team.jerseyUrl : '/assets/img/question-mark-80.png'">
               {{ player.fullName }}
