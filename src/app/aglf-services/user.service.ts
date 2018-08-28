@@ -92,7 +92,7 @@ export class UserService {
         this._budget$.next(this._budget$.value - player.price);
 
         if (update === true) {
-            let playersData: PlayerData[] = selectedPlayers.map((player: Player) => new PlayerData({
+            let playersData: PlayerData[] = selectedPlayers.filter(p => p !== null).map((player: Player) => new PlayerData({
                 id: player.id
             }));
             this.playersService.setPlayers(playersData).subscribe(res => console.log(res));
