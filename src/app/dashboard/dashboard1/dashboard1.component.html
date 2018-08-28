@@ -101,7 +101,7 @@
           <img [src]="'assets/img/bgred.png'">
         </div>
         <div class="aglf-header-right">
-          <h1 class="card-title">AGL Fantasy Leaderboard </h1>
+          <h1 class="card-title">Top users </h1>
         </div>
       </div>
       <div class="card-body">
@@ -153,15 +153,14 @@
           <h1 class="card-title">AGL Fantasy Leaderboard </h1>
         </div>
       </div>
-      <div class="card-body">
+      <div class="card-body" *ngIf="userProgress.length>0">
         <div class="card-block">
           <div class="chart-info mb-2">
-            <span class="text-uppercase mr-3"><i class="fa fa-circle primary font-small-2 mr-1"></i> Sales</span>
-            <span class="text-uppercase"><i class="fa fa-circle deep-purple font-small-2 mr-1"></i> Visits</span>
+            <span class="text-uppercase mr-3"><i class="fa fa-circle primary font-small-2 mr-1"></i> Points</span>
           </div>
-          <div id="line-area2" class="height-400 lineArea2">
+          <div id="line-area2" class="height-900 lineArea2">
             <x-chartist class="" [data]="lineArea2.data" [type]="lineArea2.type" [options]="lineArea2.options"
-                        [responsiveOptions]="lineArea2.responsiveOptions" [events]="lineArea2.events">
+                        [responsiveOptions]="lineArea2.responsiveOptions">
 
             </x-chartist>
           </div>
