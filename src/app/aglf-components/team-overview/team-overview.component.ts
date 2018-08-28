@@ -18,6 +18,8 @@ export class TeamOverviewComponent implements OnInit {
     selectedPlayers: Player[] = [];
     budget: number;
 
+    position: Position | number = 0;
+
     constructor(private playersService: PlayersService, private userService: UserService) { }
 
     ngOnInit() {
@@ -70,5 +72,10 @@ export class TeamOverviewComponent implements OnInit {
 
     removePlayerEventHandler(player: Player) {
         this.userService.removePlayer(player);
+    }
+
+    selectPositionEventHandler(position: Position) {
+        console.log('team: selectPositionEventHandler', position)
+        this.position = position;
     }
 }

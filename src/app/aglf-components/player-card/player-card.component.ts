@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Player } from 'app/aglf-classes/player';
+import { Player, Position } from 'app/aglf-classes/player';
 
 @Component({
     selector: 'app-player-card',
@@ -17,6 +17,11 @@ export class PlayerCardComponent implements OnInit {
     @Output()
     removePlayerEventEmitter: EventEmitter<Player> = new EventEmitter<Player>();
 
+    @Output()
+    selectPositionEventEmitter: EventEmitter<Position> = new EventEmitter<Position>();
+
+    position: Position;
+
     x: number;
     y: number;
 
@@ -33,94 +38,113 @@ export class PlayerCardComponent implements OnInit {
         this.removePlayerEventEmitter.emit(this.player);
     }
 
+    selectPosition() {
+        this.selectPositionEventEmitter.emit(this.position);
+    }
+
     resolveCoordinates(index: number) {
         switch (index) {
             // GK1
             case 0:
+                this.position = Position.GOALKEEPER;
                 this.x = -120;
                 this.y = 400;
                 break;
 
             // GK2
             case 1:
+                this.position = Position.GOALKEEPER;
                 this.x = 120;
                 this.y = 400;
                 break;
 
             // D1
             case 2:
+                this.position = Position.DEFENDER;
                 this.x = -380;
                 this.y = 250;
                 break;
 
             // D2
             case 3:
+                this.position = Position.DEFENDER;
                 this.x = -180;
                 this.y = 250;
                 break;
 
             // D3
             case 4:
+                this.position = Position.DEFENDER;
                 this.x = 0;
                 this.y = 250;
                 break;
 
             // D4
             case 5:
+                this.position = Position.DEFENDER;
                 this.x = 180;
                 this.y = 250;
                 break;
 
             // D5
             case 6:
+                this.position = Position.DEFENDER;
                 this.x = 380;
                 this.y = 250;
                 break;
 
             // M1
             case 7:
+                this.position = Position.MIDFIELDER;
                 this.x = -380;
                 this.y = 50;
                 break;
 
             // M2
             case 8:
+                this.position = Position.MIDFIELDER;
                 this.x = -180;
                 this.y = 50;
                 break;
 
             // M3
             case 9:
+                this.position = Position.MIDFIELDER;
                 this.x = 0;
                 this.y = 50;
                 break;
 
             // M4
             case 10:
+                this.position = Position.MIDFIELDER;
                 this.x = 180;
                 this.y = 50;
                 break;
 
             // M5
             case 11:
+                this.position = Position.MIDFIELDER;
                 this.x = 380;
                 this.y = 50;
                 break;
 
             // F1
             case 12:
+                this.position = Position.STRIKER;
                 this.x = -180;
                 this.y = -150;
                 break;
 
             // F2
             case 13:
+                this.position = Position.STRIKER;
                 this.x = 0;
                 this.y = -150;
                 break;
 
             // F3
             case 14:
+                this.position = Position.STRIKER;
                 this.x = 180;
                 this.y = -150;
                 break;

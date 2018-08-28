@@ -1,4 +1,4 @@
-<div class="player" [ngStyle]="{ 'transform': 'translateX(' + x + '%) translateY(' + y + '%) ' }">
+<div class="player" [ngStyle]="{ 'transform': 'translateX(' + x + '%) translateY(' + y + '%) ' }" (click)="player ? false : selectPosition()">
     <div class="player__placeholder"></div>
     <div class="player__card">
         <!--<h3>{{ name }}</h3>

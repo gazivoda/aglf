@@ -20,7 +20,8 @@
         <app-player-card *ngFor="let player of selectedPlayers; let i=index"
             [index]="i"
             [player]="player"
-            (removePlayerEventEmitter)="removePlayerEventHandler($event)"></app-player-card>
+            (removePlayerEventEmitter)="removePlayerEventHandler($event)"
+            (selectPositionEventEmitter)="selectPositionEventHandler($event)"></app-player-card>
     </div>
   </div>
 </div>
