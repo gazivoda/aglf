@@ -92,6 +92,32 @@
 </div>
 <!--Statistics cards Ends-->
 
+<div class="row">
+
+  <div class="col-xl-12 col-lg-12 col-md-6 col-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
+        </div>
+        <div class="aglf-header-right">
+          <h1 class="card-title">Top Players </h1>
+        </div>
+      </div>
+      <section class="card-player">
+        <div *ngFor="let player of topPlayers; let i = index" class="card--content">
+          <img [src]="player? player.jerseyUrl : '/assets/img/question-mark-80.png'">
+          <div class="card--content-first"> {{player.lastName}}</div>
+          <div class="card--content-second">
+
+            <span class="card--content-second-1">{{i+1}}. </span>
+            <span class="card--content-second-2">{{player.score}} pts </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
 
 <div class="row" matchHeight="card">
   <div class="col-xl-8 col-lg-8 col-12" style="margin-top: -20px;">

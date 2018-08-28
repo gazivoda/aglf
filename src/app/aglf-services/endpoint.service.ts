@@ -57,6 +57,18 @@ export class EndpointService {
 
   }
 
+  getTopPlayers(): Observable<any[]> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
+
+    return this.http
+      .get(API_ENDPOINT + '/player/getTopPlayers', {headers})
+      .pipe(
+        map(data => <any>data),
+        catchError(this.handleError)
+      );
+  }
+
   getTopUsers(): Observable<any[]> {
     let headers: HttpHeaders = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
@@ -67,7 +79,6 @@ export class EndpointService {
         map(data => <any>data),
         catchError(this.handleError)
       );
-
   }
 
   setPlayers(playersData: PlayerData[]): Observable<any> {

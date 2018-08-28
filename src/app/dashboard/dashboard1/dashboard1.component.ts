@@ -32,6 +32,7 @@ export class Dashboard1Component {
   players: Player[] = [];
   userDetails: any = {};
   topUsers: any[] = [];
+  topPlayers: any[] = [];
   userProgress: any[] = [];
   lineArea2: Chart = {
     type: 'Line',
@@ -101,6 +102,9 @@ export class Dashboard1Component {
       });
     this.endpointService.getTopUsers().subscribe((data: any) => {
       this.topUsers = data;
+    });
+    this.endpointService.getTopPlayers().subscribe((data: any) => {
+      this.topPlayers = data;
     });
   }
 
