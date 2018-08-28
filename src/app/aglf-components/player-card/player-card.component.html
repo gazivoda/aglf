@@ -1,6 +1,7 @@
 <div class="player" [ngStyle]="{ 'transform': 'translateX(' + x + '%) translateY(' + y + '%) ' }">
-    <div class="player__placeholder"></div><div class="player__card">
-        <!--<h3>{{ name }}</h3>-->
+    <div class="player__placeholder"></div>
+    <div class="player__card">
+        <!--<h3>{{ name }}</h3>
         <ul class="player__card__list">
             <li>DOB<br>32</li>
             <li>Height<br>1.87m</li>
@@ -14,9 +15,15 @@
                 <span>Goals</span><br>0
             </li>
         </ul>
+        -->
+    </div>
+    <div class="player__remove" *ngIf="player" (click)="removePlayer()">
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <div class="player__label" style="display: block; opacity: 1;">
-        <span>{{ player ? player.lastName : 'add player' }}</span>
+        <span>{{ player ? player.fullName : 'add player' }}</span>
     </div>
     <div class="player__img">
         <img [src]="player ? player.team.jerseyUrl : '/assets/img/question-mark-80.png'">

@@ -1,10 +1,5 @@
 <div class="stage">
   <div class="world">
-    <div class="team">
-        <app-player-card *ngFor="let player of selectedPlayers; let i=index"
-            [index]="i"
-            [player]="player"></app-player-card>
-    </div>
     <div class="terrain">
       <div class="field ground">
         <div class="field__texture field__texture--gradient"></div>
@@ -20,7 +15,12 @@
         <div class="field__line field__line--circle"></div>
         <div class="field__line field__line--penalty field__line--penalty--far"></div>
       </div>
-      <div class="field__side"></div>
+    </div>
+    <div class="team">
+        <app-player-card *ngFor="let player of selectedPlayers; let i=index"
+            [index]="i"
+            [player]="player"
+            (removePlayerEventEmitter)="removePlayerEventHandler($event)"></app-player-card>
     </div>
   </div>
 </div>

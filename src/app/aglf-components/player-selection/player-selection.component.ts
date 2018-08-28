@@ -18,10 +18,13 @@ export class PlayerSelectionComponent implements OnInit {
     @Input()
     players: Player[] = [];
 
+    @Input()
+    budget: number = 0;
+
     filteredPlayers: Player[] = [];
 
     selectedPriceIndex: number = 0;
-    priceRange: number[] = Array.apply(null, Array(22)).map((f, i) =>  i === 0 ? -1 : (3.5 + i * 0.5));
+    priceRange: number[] = Array.apply(null, Array(20)).map((f, i) =>  i === 0 ? -1 : (0.5 + i * 0.5));
 
     @Output()
     selectPlayerEventEmitter: EventEmitter<Player> = new EventEmitter<Player>();
@@ -137,9 +140,9 @@ export class PlayerSelectionComponent implements OnInit {
         return result.fullName;
     }
 
-    onPlayerSearchChange(result: Player) {
-        if (result) {
-            this.selectPlayerEventEmitter.emit(result);
+    selectPlayer(player: Player) {
+        if (player) {
+            this.selectPlayerEventEmitter.emit(player);
         }
     }
 }

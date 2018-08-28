@@ -10,7 +10,7 @@ import { PlayersService } from 'app/aglf-services/players.service';
 export class UserService {
 
     private _selectedPlayers$: BehaviorSubject<Player[]> = new BehaviorSubject<Player[]>(new Array(15));
-    private _budget$: BehaviorSubject<number> = new BehaviorSubject<number>(1000);
+    private _budget$: BehaviorSubject<number> = new BehaviorSubject<number>(100);
 
     constructor(private endpointService: EndpointService, private playersService: PlayersService) {
 
@@ -33,6 +33,32 @@ export class UserService {
 
     getBudget(): Observable<number> {
         return this._budget$.asObservable();
+    }
+
+    removePlayer(player: Player) {
+        let selectedPlayers = this._selectedPlayers$.value;
+        let index: number = -1;
+        selectedPlayers.forEach((p: Player, i: number) => {
+            if (p && p.id === player.id) {
+                index = i;
+                return;
+            }
+        });
+        if (index > -1) {
+            selectedPlayers[index] = null;
+
+            let playersData: PlayerData[] = selectedPlayers.filter((p: Player) => p !== null).map((player: Player) => new PlayerData({
+                id: player.id
+            }));
+            this.playersService.setPlayers(playersData).subscribe(res => {
+                this._selectedPlayers$.next(new Array(15));
+                selectedPlayers.filter((p: Player) => p !== null).forEach((player: Player, i: number) => {
+                    this.addPlayer(player, false);
+                });
+
+                this._budget$.next(this._budget$.value + player.price);
+            });
+        }
     }
 
     addPlayer(player: Player, update: boolean) {
@@ -70,7 +96,7 @@ export class UserService {
         this._budget$.next(this._budget$.value - player.price);
 
         if (update === true) {
-            let playersData: PlayerData[] = selectedPlayers.map((player: Player) => new PlayerData({
+            let playersData: PlayerData[] = selectedPlayers.filter(p => p !== null).map((player: Player) => new PlayerData({
                 id: player.id
             }));
             this.playersService.setPlayers(playersData).subscribe(res => console.log(res));

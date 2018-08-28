@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Player } from 'app/aglf-classes/player';
 
 @Component({
@@ -14,6 +14,9 @@ export class PlayerCardComponent implements OnInit {
     @Input()
     player: Player;
 
+    @Output()
+    removePlayerEventEmitter: EventEmitter<Player> = new EventEmitter<Player>();
+
     x: number;
     y: number;
 
@@ -24,6 +27,10 @@ export class PlayerCardComponent implements OnInit {
 
     ngOnChanges() {
         this.resolveCoordinates(this.index);
+    }
+
+    removePlayer() {
+        this.removePlayerEventEmitter.emit(this.player);
     }
 
     resolveCoordinates(index: number) {
