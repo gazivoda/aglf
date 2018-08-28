@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Player } from 'app/aglf-classes/player';
+import { Player, Position } from 'app/aglf-classes/player';
 
 @Component({
     selector: 'app-pitch',
@@ -14,6 +14,9 @@ export class PitchComponent implements OnInit {
     @Output()
     removePlayerEventEmitter: EventEmitter<Player> = new EventEmitter<Player>();
 
+    @Output()
+    selectPositionEventEmitter: EventEmitter<Position> = new EventEmitter<Position>();
+
     constructor() { }
 
     ngOnInit() {
@@ -21,6 +24,10 @@ export class PitchComponent implements OnInit {
 
     removePlayerEventHandler(player: Player) {
         this.removePlayerEventEmitter.emit(player);
+    }
+
+    selectPositionEventHandler(position: Position) {
+        this.selectPositionEventEmitter.emit(position);
     }
 
 }
