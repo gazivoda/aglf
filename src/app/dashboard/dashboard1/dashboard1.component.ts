@@ -89,8 +89,6 @@ export class Dashboard1Component {
               this.lineArea2.data.labels = this.getDataLabels(this.userProgress);
             });
           }
-
-
         });
       });
 
