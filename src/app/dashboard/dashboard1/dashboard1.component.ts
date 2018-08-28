@@ -32,6 +32,42 @@ export class Dashboard1Component {
   players: Player[] = [];
   userDetails: any = {};
   topUsers: any[] = [];
+  userProgress: any[] = [];
+  lineArea2: Chart = {
+    type: 'Line',
+    data: {
+      "labels": [],
+      "series": [[]]
+    },
+    options: {
+      showArea: true,
+      fullWidth: true,
+      lineSmooth: Chartist.Interpolation.none(),
+      axisX: {
+        showGrid: false,
+      },
+      axisY: {
+        low: 0,
+        scaleMinSpace: 50,
+      }
+    },
+    responsiveOptions: [
+      ['screen and (max-width: 640px) and (min-width: 381px)', {
+        axisX: {
+          labelInterpolationFnc: function (value, index) {
+            return index % 2 === 0 ? value : null;
+          }
+        }
+      }],
+      ['screen and (max-width: 380px)', {
+        axisX: {
+          labelInterpolationFnc: function (value, index) {
+            return index % 3 === 0 ? value : null;
+          }
+        }
+      }]
+    ],
+  };
 
   constructor(private playersService: PlayersService, private userService: UserService, private endpointService: EndpointService) {
   }
@@ -40,6 +76,20 @@ export class Dashboard1Component {
     this.userService.getUserDetails()
       .subscribe((data: any) => {
         this.userDetails = data;
+        this.endpointService.getProgressForUser(data.userId).subscribe((data: any) => {
+          if (data && data.length > 0) {
+            this.userProgress = data;
+            this.lineArea2.data.series = this.getDataSeries(this.userProgress);
+            this.lineArea2.data.labels = this.getDataLabels(this.userProgress);
+          }
+          else {
+            this.endpointService.getProgressForUser(1).subscribe((data: any) => {
+              this.userProgress = data;
+              this.lineArea2.data.series[0] = this.getDataSeries(this.userProgress);
+              this.lineArea2.data.labels = this.getDataLabels(this.userProgress);
+            });
+          }
+        });
       });
 
     this.playersService.getPlayers()
@@ -66,61 +116,42 @@ export class Dashboard1Component {
     return 0;
   }
 
+  totalTeamCostByPlayer(players: any[]) {
+    if (players && players.length > 0) {
+      return players.map(player => player.price).reduce((a, c) => a + c);
+    }
+    return 0;
+  }
+
+  captainImage(players: any[]) {
+    if (players && players.length > 0 && players.find(player => player.captain)) {
+      return players.find(player => player.captain);
+    }
+    if (players.length > 0) {
+      return players.find(player => player.jerseyUrl !== '');
+    }
+    return null;
+  }
+
   getTeamRanking(topUsers: any[], userDetails: any) {
     return topUsers.indexOf(topUsers.find(user => user.userId === userDetails.userId)) + 1;
   }
 
-  // Line area chart configuration Starts
-  lineArea: Chart = {
-    type: 'Line',
-    data: data['lineAreaDashboard'],
-    options: {
-      low: 0,
-      showArea: true,
-      fullWidth: true,
-      onlyInteger: true,
-      axisY: {
-        low: 0,
-        scaleMinSpace: 50,
-      },
-      axisX: {
-        showGrid: false
-      }
-    },
-    events: {
-      created(data: any): void {
-        var defs = data.svg.elem('defs');
-        defs.elem('linearGradient', {
-          id: 'gradient',
-          x1: 0,
-          y1: 1,
-          x2: 1,
-          y2: 0
-        }).elem('stop', {
-          offset: 0,
-          'stop-color': 'rgba(0, 201, 255, 1)'
-        }).parent().elem('stop', {
-          offset: 1,
-          'stop-color': 'rgba(146, 254, 157, 1)'
-        });
+  getDataLabels(userProgress: any[]) {
+    if (userProgress && userProgress.length > 0) {
+      return this.userProgress.map(up => 'Round ' + up['round']);
+    }
+    return []
+  }
 
-        defs.elem('linearGradient', {
-          id: 'gradient1',
-          x1: 0,
-          y1: 1,
-          x2: 1,
-          y2: 0
-        }).elem('stop', {
-          offset: 0,
-          'stop-color': 'rgba(132, 60, 247, 1)'
-        }).parent().elem('stop', {
-          offset: 1,
-          'stop-color': 'rgba(56, 184, 242, 1)'
-        });
-      },
+  getDataSeries(userProgress: any[]) {
+    if (userProgress && userProgress.length > 0) {
+      return this.userProgress.map(up => up.score);
+    }
+    return []
+  }
 
-    },
-  };
+
   // Line area chart configuration Ends
 
   // Stacked Bar chart configuration Starts
@@ -176,92 +207,7 @@ export class Dashboard1Component {
   // Stacked Bar chart configuration Ends
 
   // Line area chart 2 configuration Starts
-  lineArea2: Chart = {
-    type: 'Line',
-    data: data['lineArea2'],
-    options: {
-      showArea: true,
-      fullWidth: true,
-      lineSmooth: Chartist.Interpolation.none(),
-      axisX: {
-        showGrid: false,
-      },
-      axisY: {
-        low: 0,
-        scaleMinSpace: 50,
-      }
-    },
-    responsiveOptions: [
-      ['screen and (max-width: 640px) and (min-width: 381px)', {
-        axisX: {
-          labelInterpolationFnc: function (value, index) {
-            return index % 2 === 0 ? value : null;
-          }
-        }
-      }],
-      ['screen and (max-width: 380px)', {
-        axisX: {
-          labelInterpolationFnc: function (value, index) {
-            return index % 3 === 0 ? value : null;
-          }
-        }
-      }]
-    ],
-    events: {
-      created(data: any): void {
-        var defs = data.svg.elem('defs');
-        defs.elem('linearGradient', {
-          id: 'gradient2',
-          x1: 0,
-          y1: 1,
-          x2: 0,
-          y2: 0
-        }).elem('stop', {
-          offset: 0,
-          'stop-opacity': '0.2',
-          'stop-color': 'rgba(255, 255, 255, 1)'
-        }).parent().elem('stop', {
-          offset: 1,
-          'stop-opacity': '0.2',
-          'stop-color': 'rgba(0, 201, 255, 1)'
-        });
 
-        defs.elem('linearGradient', {
-          id: 'gradient3',
-          x1: 0,
-          y1: 1,
-          x2: 0,
-          y2: 0
-        }).elem('stop', {
-          offset: 0.3,
-          'stop-opacity': '0.2',
-          'stop-color': 'rgba(255, 255, 255, 1)'
-        }).parent().elem('stop', {
-          offset: 1,
-          'stop-opacity': '0.2',
-          'stop-color': 'rgba(132, 60, 247, 1)'
-        });
-      },
-      draw(data: any): void {
-        var circleRadius = 4;
-        if (data.type === 'point') {
-
-          var circle = new Chartist.Svg('circle', {
-            cx: data.x,
-            cy: data.y,
-            r: circleRadius,
-            class: 'ct-point-circle'
-          });
-          data.element.replace(circle);
-        }
-        else if (data.type === 'label') {
-          // adjust label position for rotation
-          const dX = data.width / 2 + (30 - data.width)
-          data.element.attr({x: data.element.attr('x') - dX})
-        }
-      }
-    },
-  };
   // Line area chart 2 configuration Ends
 
   // Line chart configuration Starts

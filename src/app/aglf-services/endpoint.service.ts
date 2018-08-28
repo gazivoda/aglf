@@ -30,6 +30,33 @@ export class EndpointService {
       );
   }
 
+  getProgressForUser(userId?: number): Observable<any[]> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
+
+    let options;
+    if (userId) {
+      options = {
+        headers: headers,
+        params: {
+          userId: userId
+        }
+      }
+    } else {
+      options = {
+        headers: headers
+      }
+    }
+
+    return this.http
+      .get(API_ENDPOINT + '/user/getProgressForUser', options)
+      .pipe(
+        map(data => <any>data),
+        catchError(this.handleError)
+      );
+
+  }
+
   getTopUsers(): Observable<any[]> {
     let headers: HttpHeaders = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);

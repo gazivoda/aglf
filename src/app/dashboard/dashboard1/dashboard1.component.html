@@ -91,154 +91,79 @@
 
 </div>
 <!--Statistics cards Ends-->
-<iframe
-  src="https://widgets.worldfootball.com/competition/419#?c_header=#ec1d23&columns=mp,mw,md,ml&height_unit=pixels&tabs=matches&width_unit=percent"
-  width="100%" height="450" frameborder="0"></iframe>
-<!--Line with Area Chart 1 Starts-->
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Team Score</h4>
-      </div>
-      <div class="card-body">
-        <div class="card-block">
-          <div class="chart-info mb-3 ml-3">
-            <span class="gradient-blackberry d-inline-block rounded-circle mr-1"
-                  style="width:15px; height:15px;"></span> Score
-            <span class="gradient-mint d-inline-block rounded-circle mr-1 ml-2" style="width:15px; height:15px;"></span>
-            Visits
-          </div>
-          <div id="line-area" class="height-350 lineArea">
-            <x-chartist [data]="lineArea.data" [type]="lineArea.type" [options]="lineArea.options"
-                        [responsiveOptions]="lineArea.responsiveOptions" [events]="lineArea.events">
-            </x-chartist>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--Line with Area Chart 1 Ends-->
+
 
 <div class="row" matchHeight="card">
-  <div class="col-xl-4 col-lg-12 col-12">
+  <div class="col-xl-8 col-lg-8 col-12" style="margin-top: -20px;">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Statistics</h4>
-      </div>
-      <div class="card-body">
-
-        <p class="font-medium-2 text-muted text-center pb-2">Last 6 Months Sales</p>
-        <div id="Stack-bar-chart" class="height-300 Stackbarchart mb-2">
-          <x-chartist class="" [data]="Stackbarchart.data" [type]="Stackbarchart.type" [options]="Stackbarchart.options"
-                      [responsiveOptions]="Stackbarchart.responsiveOptions" [events]="Stackbarchart.events">
-          </x-chartist>
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
         </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-8 col-lg-12 col-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Shopping Cart</h4>
+        <div class="aglf-header-right">
+          <h1 class="card-title">Top users </h1>
+        </div>
       </div>
       <div class="card-body">
         <table class="table table-responsive-sm text-center">
-          <thead>
+          <thead align="left">
           <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Quantity</th>
+            <th></th>
+            <th>Captain</th>
+            <th>Player Name</th>
+            <th>Points</th>
             <th>Status</th>
-            <th>Amount</th>
-            <th>Delete</th>
+            <th>Team value</th>
           </tr>
           </thead>
-          <tbody>
-          <tr>
-            <td><img class="media-object round-media height-50" src="assets/img/elements/01.png"
-                     alt="Generic placeholder image"/></td>
-            <td>Ferrero Rocher</td>
-            <td>1</td>
+          <tbody align="left">
+          <tr *ngFor="let user of topUsers">
+            <td align="right">
+              <img class="item-image"
+                   [src]="captainImage(user.players) ? captainImage(user.players).jerseyUrl : '/assets/img/question-mark-80.png'">
+            </td>
+            <td>
+              <span>{{captainImage(user.players)?captainImage(user.players).firstName:''}}
+                        {{captainImage(user.players)?captainImage(user.players).lastName:''}}     </span>
+            </td>
+            <td>{{user.userName}}</td>
+            <td>{{user.score}}</td>
             <td>
               <a class="btn btn-raised btn-round btn-primary">Active</a>
             </td>
-            <td>$19.94</td>
-            <td>
-              <a class="danger" data-original-title="" title="">
-                <i class="ft-x"></i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td><img class="media-object round-media height-50" src="assets/img/elements/07.png"
-                     alt="Generic placeholder image"/></td>
-            <td>Headphones</td>
-            <td>2</td>
-            <td>
-              <a class="btn btn-raised btn-round btn-danger">Disabled</a>
-            </td>
-            <td>$99.00</td>
-            <td>
-              <a class="danger" data-original-title="" title="">
-                <i class="ft-x"></i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td><img class="media-object round-media height-50" src="assets/img/elements/11.png"
-                     alt="Generic placeholder image"/></td>
-            <td>Camera</td>
-            <td>1</td>
-            <td>
-              <a class="btn btn-raised btn-round btn-info">Paused</a>
-            </td>
-            <td>$299.00</td>
-            <td>
-              <a class="danger" data-original-title="" title="">
-                <i class="ft-x"></i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td><img class="media-object round-media height-50" src="assets/img/elements/14.png"
-                     alt="Generic placeholder image"/></td>
-            <td>Beer</td>
-            <td>2</td>
-            <td>
-              <a class="btn btn-raised btn-round btn-success">Active</a>
-            </td>
-            <td>$24.51</td>
-            <td>
-              <a class="danger" data-original-title="" title="">
-                <i class="ft-x"></i>
-              </a>
-            </td>
+            <td>$ {{totalTeamCostByPlayer(user.players)}}</td>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+  <div class="col-xl-4 col-lg-4 col-12">
+    <iframe
+      src="https://widgets.worldfootball.com/competition/419#?c_header=#ec1d23&columns=mp,mw,md,ml&height_unit=pixels&tabs=matches&width_unit=percent"
+      width="100%" height="450" frameborder="0"></iframe>
+  </div>
 </div>
 
 <div class="row" matchHeight="card">
   <div class="col-xl-8 col-lg-12 col-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title mb-0">Visit & Sales Statistics</h4>
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
+        </div>
+        <div class="aglf-header-right">
+          <h1 class="card-title">User Progress </h1>
+        </div>
       </div>
-      <div class="card-body">
+      <div class="card-body" *ngIf="userProgress.length>0">
         <div class="card-block">
           <div class="chart-info mb-2">
-            <span class="text-uppercase mr-3"><i class="fa fa-circle primary font-small-2 mr-1"></i> Sales</span>
-            <span class="text-uppercase"><i class="fa fa-circle deep-purple font-small-2 mr-1"></i> Visits</span>
+            <span class="text-uppercase mr-3"><i class="fa fa-circle primary font-small-2 mr-1"></i> Points</span>
           </div>
-          <div id="line-area2" class="height-400 lineArea2">
+          <div id="line-area2" class="height-900 lineArea2">
             <x-chartist class="" [data]="lineArea2.data" [type]="lineArea2.type" [options]="lineArea2.options"
-                        [responsiveOptions]="lineArea2.responsiveOptions" [events]="lineArea2.events">
+                        [responsiveOptions]="lineArea2.responsiveOptions">
 
             </x-chartist>
           </div>
@@ -247,18 +172,15 @@
     </div>
   </div>
   <div class="col-xl-4 col-lg-12 col-12">
-    <div class="card gradient-blackberry">
+    <div class="card gradient-ibiza-sunset">
       <div class="card-body">
         <div class="card-block">
-          <h4 class="card-title white">Statistics</h4>
+          <h4 class="card-title white">Team progress</h4>
           <div class="p-2 text-center">
-            <a class="white font-medium-1">Month</a>
-            <a class="btn btn-raised btn-round bg-white mx-3 px-3">Week</a>
-            <a class="white font-medium-1">Day</a>
+            <a class="btn btn-raised btn-round bg-white mx-3 px-3">Round</a>
           </div>
           <div class="my-3 text-center white">
-            <a class="font-large-2 d-block mb-1">$ 78.89 <span class="ft-arrow-up font-large-2"></span></a>
-            <span class="font-medium-1">Week2   +15.44</span>
+            <a class="font-large-2 d-block mb-1">15 Points<span class="ft-arrow-up font-large-2"></span></a>
           </div>
         </div>
         <div id="lineChart" class="height-250 lineChart lineChartShadow">
@@ -275,11 +197,14 @@
   <div class="col-xl-4 col-lg-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Statistics</h4>
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
+        </div>
+        <div class="aglf-header-right">
+          <h1 class="card-title">Overall Data </h1>
+        </div>
       </div>
       <div class="card-body">
-
-        <p class="font-medium-2 text-muted text-center">Hobbies</p>
         <div id="bar-chart" class="height-250 BarChartShadow BarChart">
           <x-chartist class="" [data]="BarChart.data" [type]="BarChart.type" [options]="BarChart.options"
                       [responsiveOptions]="BarChart.responsiveOptions" [events]="BarChart.events">
@@ -292,25 +217,25 @@
               <span class="gradient-pomegranate d-block rounded-circle mx-auto mb-2"
                     style="width:10px; height:10px;"></span>
               <span class="font-large-1 d-block mb-2">48</span>
-              <span>Sport</span>
+              <span>Passes</span>
             </div>
             <div class="col text-center">
               <span class="gradient-green-tea d-block rounded-circle mx-auto mb-2"
                     style="width:10px; height:10px;"></span>
-              <span class="font-large-1 d-block mb-2">9</span>
-              <span>Music</span>
+              <span class="font-large-1 d-block mb-2">932</span>
+              <span>KM Run</span>
             </div>
             <div class="col text-center">
               <span class="gradient-blackberry d-block rounded-circle mx-auto mb-2"
                     style="width:10px; height:10px;"></span>
               <span class="font-large-1 d-block mb-2">26</span>
-              <span>Travel</span>
+              <span>Changes</span>
             </div>
             <div class="col text-center">
               <span class="gradient-ibiza-sunset d-block rounded-circle mx-auto mb-2"
                     style="width:10px; height:10px;"></span>
-              <span class="font-large-1 d-block mb-2">17</span>
-              <span>News</span>
+              <span class="font-large-1 d-block mb-2">57</span>
+              <span>Goals</span>
             </div>
           </div>
         </div>
@@ -320,92 +245,27 @@
   <div class="col-xl-4 col-lg-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title mb-0">User List</h4>
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
+        </div>
+        <div class="aglf-header-right">
+          <h1 class="card-title">My Players </h1>
+        </div>
       </div>
       <div class="card-body">
         <div class="card-block">
-          <div class="media mb-1">
+          <div class="media mb-1" *ngFor="let player of userDetails.players">
             <a>
-              <img alt="96x96" class="media-object d-flex mr-3 bg-primary height-50 rounded-circle"
-                   src="assets/img/portrait/small/avatar-s-12.png">
+              <img class="player-image"
+                   [src]="player.jerseyUrl">
             </a>
             <div class="media-body">
-              <h4 class="font-medium-1 mt-1 mb-0">Jessica Rice</h4>
-              <p class="text-muted font-small-3">UX Designer</p>
+              <h4 class="font-medium-1 mt-1 mb-0">{{player.firstName}} {{player.lastName}}</h4>
+              <p class="text-muted font-small-3">{{player.position}} </p>
             </div>
             <div class="mt-1">
-              <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                <input type="checkbox" class="custom-control-input" checked id="customcheckbox1">
-                <label class="custom-control-label" for="customcheckbox1"></label>
-              </div>
+              ${{player.price}}
             </div>
-          </div>
-          <div class="media mb-1">
-            <a>
-              <img alt="96x96" class="media-object d-flex mr-3 bg-danger height-50 rounded-circle"
-                   src="assets/img/portrait/small/avatar-s-11.png">
-            </a>
-            <div class="media-body">
-              <h4 class="font-medium-1 mt-1 mb-0">Jacob Rios</h4>
-              <p class="text-muted font-small-3">HTML Developer</p>
-            </div>
-            <div class="mt-1">
-              <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                <input type="checkbox" class="custom-control-input" id="customcheckbox2">
-                <label class="custom-control-label" for="customcheckbox2"></label>
-              </div>
-            </div>
-          </div>
-          <div class="media mb-1">
-            <a>
-              <img alt="96x96" class="media-object d-flex mr-3 bg-success height-50 rounded-circle"
-                   src="assets/img/portrait/small/avatar-s-3.png">
-            </a>
-            <div class="media-body">
-              <h4 class="font-medium-1 mt-1 mb-0">Russell Delgado</h4>
-              <p class="text-muted font-small-3">Database Designer</p>
-            </div>
-            <div class="mt-1">
-              <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                <input type="checkbox" class="custom-control-input" id="customcheckbox3">
-                <label class="custom-control-label" for="customcheckbox3"></label>
-              </div>
-            </div>
-          </div>
-          <div class="media mb-1">
-            <a>
-              <img alt="96x96" class="media-object d-flex mr-3 bg-warning height-50 rounded-circle"
-                   src="assets/img/portrait/small/avatar-s-6.png">
-            </a>
-            <div class="media-body">
-              <h4 class="font-medium-1 mt-1 mb-0">Sara McDonald</h4>
-              <p class="text-muted font-small-3">Team Leader</p>
-            </div>
-            <div class="mt-1">
-              <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                <input type="checkbox" class="custom-control-input" checked id="customcheckbox4">
-                <label class="custom-control-label" for="customcheckbox4"></label>
-              </div>
-            </div>
-          </div>
-          <div class="media mb-1">
-            <a>
-              <img alt="96x96" class="media-object d-flex mr-3 bg-info height-50 rounded-circle"
-                   src="assets/img/portrait/small/avatar-s-18.png">
-            </a>
-            <div class="media-body">
-              <h4 class="font-medium-1 mt-1 mb-0">Janet Lucas</h4>
-              <p class="text-muted font-small-3">Project Manger</p>
-            </div>
-            <div class="mt-1">
-              <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                <input type="checkbox" class="custom-control-input" id="customcheckbox5">
-                <label class="custom-control-label" for="customcheckbox5"></label>
-              </div>
-            </div>
-          </div>
-          <div class="action-buttons mt-2 text-center">
-            <a class="btn btn-raised gradient-blackberry py-2 px-4 white mr-2">Add New</a>
           </div>
         </div>
       </div>
@@ -414,11 +274,16 @@
   <div class="col-xl-4 col-lg-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Project Stats</h4>
+        <div class="aglf-header-left">
+          <img [src]="'assets/img/bgred.png'">
+        </div>
+        <div class="aglf-header-right">
+          <h1 class="card-title">Statistics comparison </h1>
+        </div>
       </div>
       <div class="card-body">
 
-        <p class="font-medium-2 text-muted text-center">Project Tasks</p>
+        <p class="font-medium-2 text-muted text-center">Compared to the best result</p>
         <div id="donut-dashboard-chart" class="height-250 donut">
           <x-chartist class="" [data]="DonutChart.data" [type]="DonutChart.type" [options]="DonutChart.options"
                       [responsiveOptions]="DonutChart.responsiveOptions"
@@ -429,14 +294,14 @@
         <div class="card-block">
           <div class="row mb-3">
             <div class="col">
-              <span class="mb-1 text-muted d-block">23% - Started</span>
+              <span class="mb-1 text-muted d-block">23% - Passes</span>
               <div class="progress" style="height: 5px;">
                 <div class="progress-bar bg-success" role="progressbar" style="width: 23%;" aria-valuenow="23"
                      aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div class="col">
-              <span class="mb-1 text-muted d-block">14% - In Progress</span>
+              <span class="mb-1 text-muted d-block">14% - Km Run</span>
               <div class="progress" style="height: 5px;">
                 <div class="progress-bar bg-amber" role="progressbar" style="width: 14%;" aria-valuenow="14"
                      aria-valuemin="0" aria-valuemax="100"></div>
@@ -445,7 +310,7 @@
           </div>
           <div class="row mb-2">
             <div class="col">
-              <span class="mb-1 text-muted d-block">35% - Remaining</span>
+              <span class="mb-1 text-muted d-block">35% - Changes</span>
               <div class="progress" style="height: 5px;">
                 <div class="progress-bar bg-deep-purple bg-lighten-1" role="progressbar" style="width: 35%;"
                      aria-valuenow="35" aria-valuemin="0"
@@ -453,7 +318,7 @@
               </div>
             </div>
             <div class="col">
-              <span class="mb-1 text-muted d-block">28% - Done</span>
+              <span class="mb-1 text-muted d-block">28% - Goals</span>
               <div class="progress" style="height: 5px;">
                 <div class="progress-bar bg-blue" role="progressbar" style="width: 28%;" aria-valuenow="28"
                      aria-valuemin="0" aria-valuemax="100"></div>

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EndpointService} from '../../aglf-services/endpoint.service';
+import {UserService} from '../../aglf-services/user.service';
 
 @Component({
   selector: 'app-leaderboard-overview',
@@ -8,11 +9,17 @@ import {EndpointService} from '../../aglf-services/endpoint.service';
 })
 export class LeaderboardOverviewComponent implements OnInit {
   topUsers: any[] = [];
+  userDetails: any = {};
 
-  constructor(private endpointService: EndpointService) {
+  constructor(private endpointService: EndpointService, private userService: UserService) {
   }
 
   ngOnInit() {
+    this.userService.getUserDetails()
+      .subscribe((data: any) => {
+        this.userDetails = data;
+      });
+
     this.endpointService.getTopUsers().subscribe((data: any) => {
       this.topUsers = data;
     });
