@@ -26,6 +26,7 @@ export function mapPlayerData(data: any): Player {
         firstName: data.firstName,
         lastName: data.lastName,
         position: resolvePlayerPosition(data.position),
+        positionName: data.position,
         price: data.price,
         team: new Team({
             id: data.teamId,
@@ -43,6 +44,7 @@ export class Player {
     fullName: string = null;
     photoUrl: string = null;
     position: Position = null;
+    positionName: string = null;
     number: number = null;
     price: number = null;
     team: Team = null;
@@ -56,6 +58,7 @@ export class Player {
                 fullName: player.lastName ? player.firstName + ' ' + player.lastName : player.firstName,
                 photoUrl: player.photoUrl || null,
                 position: player.position || null,
+                positionName: player.positionName || null,
                 number: player.number || null,
                 price: player.price || null,
                 team: player.team || null

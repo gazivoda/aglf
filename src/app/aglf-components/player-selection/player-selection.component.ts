@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, map, tap, switchMap, merge } from 'rxjs/operators';
 import { Player, Position } from 'app/aglf-classes/player';
@@ -77,18 +77,21 @@ export class PlayerSelectionComponent implements OnInit {
             if (values.priceFilter === -1) {
                 this.filteredPlayers = this.filteredPlayers.filter(p => p.price > 0);
             } else {
-                this.filteredPlayers = this.filteredPlayers.filter(p => p.price <= values.priceFilter);
+                this.filteredPlayers = this.filteredPlayers.filter(p => p.price <= values.priceFilter).sort((playerA: Player, playerB: Player) => playerB.price - playerA.price);
             }
         });
     }
 
-    ngOnChanges() {
-        this.filteredPlayers = this.players;
-        this.teams = this.mapTeams(this.filteredPlayers);
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes.players) {
+            this.filteredPlayers = this.players;
+            this.teams = this.mapTeams(this.filteredPlayers);
+        }
 
-        console.log('POSITION', this.position);
-        let position = this.positions.find(p => p.value === this.position);
-        this.playerSelectionForm.controls.playersFilter.setValue(position);
+        if (changes.position) {
+            let position = this.positions.find(p => p.value === this.position);
+            this.playerSelectionForm.controls.playersFilter.setValue(position);
+        }
     }
 
     mapTeams(players: Player[]): Team[] {
