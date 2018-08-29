@@ -106,13 +106,15 @@
       </div>
       <section class="card-player">
         <div *ngFor="let player of topPlayers; let i = index" class="card--content">
-          <img [src]="player? player.jerseyUrl : '/assets/img/question-mark-80.png'">
-          <div class="card--content-first"> {{player.lastName}}</div>
-          <div class="card--content-second">
+          <ng-container *ngIf="i<10">
+            <img [src]="player? player.jerseyUrl : '/assets/img/question-mark-80.png'">
+            <div class="card--content-first"> {{player.lastName}}</div>
+            <div class="card--content-second">
 
-            <span class="card--content-second-1">{{i+1}}. </span>
-            <span class="card--content-second-2">{{player.score}} pts </span>
-          </div>
+              <span class="card--content-second-1">{{i+1}}. </span>
+              <span class="card--content-second-2">{{player.score}} pts </span>
+            </div>
+          </ng-container>
         </div>
       </section>
     </div>
