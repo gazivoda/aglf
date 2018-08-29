@@ -25,6 +25,7 @@
 
   .card-body{
     padding: 0;
+    padding-top: 10px;
     height: auto;
   }
 
@@ -198,7 +199,7 @@
           &::-webkit-input-placeholder,
           &::-moz-placeholder,
           &:-ms-input-placeholder,
-          &:-moz-placeholder { 
+          &:-moz-placeholder {
               color: #fff;
           }
       }

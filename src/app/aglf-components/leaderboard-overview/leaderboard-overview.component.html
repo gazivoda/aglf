@@ -1,12 +1,12 @@
 <div class="row" matchHeight="card">
-  <div class="col-8 col-sm-12">
+  <div class="col-md-8 col-sm-12">
     <div class="card">
       <div class="card-header">
         <div class="aglf-header-left">
           <img [src]="'assets/img/bgred.png'">
         </div>
         <div class="aglf-header-right">
-          <h1 class="card-title">Top users </h1>
+          <h2 class="card-title">Top users </h2>
         </div>
       </div>
       <div class="card-body">
@@ -36,21 +36,21 @@
             <td class="mobile-table">
               <a class="btn btn-raised btn-round btn-primary">Active</a>
             </td>
-            <td>$ {{totalTeamCostByPlayer(user.players)}}</td>
+            <td>$ {{totalTeamCost(user.players)}}</td>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-  <div class="col-4 col-sm-12">
+  <div class="col-md-4 col-sm-12">
     <div class="card">
       <div class="card-header">
         <div class="aglf-header-left">
           <img [src]="'assets/img/bgred.png'">
         </div>
         <div class="aglf-header-right">
-          <h1 class="card-title">My Players </h1>
+          <h2 class="card-title">My Players </h2>
         </div>
       </div>
       <div class="card-body">

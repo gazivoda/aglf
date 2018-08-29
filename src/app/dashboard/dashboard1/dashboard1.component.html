@@ -100,7 +100,7 @@
           <img [src]="'assets/img/bgred.png'">
         </div>
         <div class="aglf-header-right">
-          <h1 class="card-title">Top Players </h1>
+          <h2 class="card-title">Top Players </h2>
         </div>
       </div>
       <section class="card-player">
@@ -127,7 +127,7 @@
           <img [src]="'assets/img/bgred.png'">
         </div>
         <div class="aglf-header-right">
-          <h1 class="card-title">Top users </h1>
+          <h2 class="card-title">Top users </h2>
         </div>
       </div>
       <div class="card-body">
@@ -143,22 +143,24 @@
           </tr>
           </thead>
           <tbody align="left">
-          <tr *ngFor="let user of topUsers">
-            <td align="right">
-              <img class="item-image"
-                   [src]="captainImage(user.players) ? captainImage(user.players).jerseyUrl : '/assets/img/question-mark-80.png'">
-            </td>
-            <td class="mobile-table">
+          <ng-container *ngFor="let user of topUsers; let i = index">
+            <tr *ngIf="i<10">
+              <td align="right">
+                <img class="item-image"
+                     [src]="captainImage(user.players) ? captainImage(user.players).jerseyUrl : '/assets/img/question-mark-80.png'">
+              </td>
+              <td class="mobile-table">
               <span>{{captainImage(user.players)?captainImage(user.players).firstName:''}}
                         {{captainImage(user.players)?captainImage(user.players).lastName:''}}     </span>
-            </td>
-            <td>{{user.userName}}</td>
-            <td>{{user.score}}</td>
-            <td class="mobile-table">
-              <a class="btn btn-raised btn-round btn-primary">Active</a>
-            </td>
-            <td>$ {{totalTeamCostByPlayer(user.players)}}</td>
-          </tr>
+              </td>
+              <td>{{user.userName}}</td>
+              <td>{{user.score}}</td>
+              <td class="mobile-table">
+                <a class="btn btn-raised btn-round btn-primary">Active</a>
+              </td>
+              <td>$ {{totalTeamCostByPlayer(user.players)}}</td>
+            </tr>
+          </ng-container>
           </tbody>
         </table>
       </div>
@@ -179,7 +181,7 @@
           <img [src]="'assets/img/bgred.png'">
         </div>
         <div class="aglf-header-right">
-          <h1 class="card-title">User Progress </h1>
+          <h2 class="card-title">User Progress </h2>
         </div>
       </div>
       <div class="card-body" *ngIf="userProgress.length>0">
@@ -203,10 +205,10 @@
         <div class="card-block">
           <h4 class="card-title white">Team progress</h4>
           <div class="p-2 text-center">
-            <a class="btn btn-raised btn-round bg-white mx-3 px-3">Round</a>
+            <a class="btn btn-raised btn-round bg-white mx-3 px-3">Round {{userDetails.round}}</a>
           </div>
           <div class="my-3 text-center white">
-            <a class="font-large-2 d-block mb-1">15 Points<span class="ft-arrow-up font-large-2"></span></a>
+            <a class="font-large-2 d-block mb-1">{{userDetails.score}} Points</a>
           </div>
         </div>
         <div id="lineChart" class="height-250 lineChart lineChartShadow">
@@ -227,7 +229,7 @@
           <img [src]="'assets/img/bgred.png'">
         </div>
         <div class="aglf-header-right">
-          <h1 class="card-title">Overall Data </h1>
+          <h2 class="card-title">Overall Data </h2>
         </div>
       </div>
       <div class="card-body">
@@ -275,7 +277,7 @@
           <img [src]="'assets/img/bgred.png'">
         </div>
         <div class="aglf-header-right">
-          <h1 class="card-title">My Players </h1>
+          <h2 class="card-title">My Players </h2>
         </div>
       </div>
       <div class="card-body">
@@ -304,7 +306,7 @@
           <img [src]="'assets/img/bgred.png'">
         </div>
         <div class="aglf-header-right">
-          <h1 class="card-title">Statistics comparison </h1>
+          <h2 class="card-title">Statistics comparison </h2>
         </div>
       </div>
       <div class="card-body">
