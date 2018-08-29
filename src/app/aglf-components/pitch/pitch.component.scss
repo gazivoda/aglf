@@ -1,7 +1,6 @@
 .stage {
   width: 100%;
   height: 100%;
-  max-width: 650px;
   margin: 20px auto;
   z-index: 1;
 }
@@ -10,9 +9,8 @@
   left: 0%;
   width: 100%;
   height: 740px;
-  transform: translateZ(-140px);
-  transform-style: preserve-3d;
   z-index: 1;
+  position: relative;
 }
 
 .field {
@@ -21,6 +19,7 @@
   height: 100%;
   background-color: #eee;
   z-index: 2;
+  background: url("/assets/img/pitch-1080.png") no-repeat center center;
 }
 
 .field__texture {
@@ -184,7 +183,6 @@
 //TODO @grizli
 @media (max-width: 991px) {
   .world {
-    transform: unset !important;
-    transform-style: unset;
+
   }
 }
