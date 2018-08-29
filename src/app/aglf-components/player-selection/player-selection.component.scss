@@ -12,18 +12,27 @@ h4 {
 }
 
 .player-item {
+    padding: 4px;
     color: #000;
     cursor: pointer;
+    transition: background-color 0.6s ease;
+}
+
+.player-item:hover {
+    background: #ec1d23;
+    color: white;
+
+    .media-body {
+        color: white;
+
+        .text-muted {
+            color: white !important;
+        }
+    }
 }
 
 .player-list-jersey {
   height: 25px;
   width: auto;
-  margin-right: 5px;
-}
-
-.list-group-item :hover {
-  //background: #ec1d23;
-  color: white;
-  transition: background-color 0.3s ease;
+  margin: 5px;
 }
