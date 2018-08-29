@@ -114,7 +114,7 @@ export class Dashboard1Component {
   }
 
   totalTeamCost(userDetails: any) {
-    if (userDetails && userDetails.players) {
+    if (userDetails && userDetails.players && userDetails.players.length > 0) {
       return userDetails.players.map(player => player.price).reduce((a, c) => a + c);
     }
     return 0;
