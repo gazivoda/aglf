@@ -84,7 +84,15 @@ export class PlayerSelectionComponent implements OnInit {
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.players) {
-            this.filteredPlayers = this.players;
+            this.filteredPlayers = this.players.sort((playerA: Player, playerB: Player) => {
+                if (playerA.fullName.toLowerCase() < playerB.fullName.toLowerCase()) {
+                    return -1;
+                } else if (playerA.fullName.toLowerCase() < playerB.fullName.toLowerCase()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
             this.teams = this.mapTeams(this.filteredPlayers);
         }
 
