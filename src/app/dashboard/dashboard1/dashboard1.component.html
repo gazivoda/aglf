@@ -93,8 +93,7 @@
 <!--Statistics cards Ends-->
 
 <div class="row">
-
-  <div class="col-xl-12 col-lg-12 col-md-6 col-12">
+  <div class="col-xl-12 col-lg-12 col-md-12 col-12">
     <div class="card">
       <div class="card-header">
         <div class="aglf-header-left">
@@ -136,10 +135,10 @@
           <thead align="left">
           <tr>
             <th></th>
-            <th>Captain</th>
+            <th class="mobile-table">Captain</th>
             <th>Player Name</th>
             <th>Points</th>
-            <th>Status</th>
+            <th class="mobile-table">Status</th>
             <th>Team value</th>
           </tr>
           </thead>
@@ -149,13 +148,13 @@
               <img class="item-image"
                    [src]="captainImage(user.players) ? captainImage(user.players).jerseyUrl : '/assets/img/question-mark-80.png'">
             </td>
-            <td>
+            <td class="mobile-table">
               <span>{{captainImage(user.players)?captainImage(user.players).firstName:''}}
                         {{captainImage(user.players)?captainImage(user.players).lastName:''}}     </span>
             </td>
             <td>{{user.userName}}</td>
             <td>{{user.score}}</td>
-            <td>
+            <td class="mobile-table">
               <a class="btn btn-raised btn-round btn-primary">Active</a>
             </td>
             <td>$ {{totalTeamCostByPlayer(user.players)}}</td>

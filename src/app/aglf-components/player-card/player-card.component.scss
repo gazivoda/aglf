@@ -14,26 +14,26 @@
 }
 
 .player:hover {
-    .player__label span {
-        color: red;
-    }
+  .player__label span {
+    color: red;
+  }
 
-    .player__remove {
-        visibility: visible;
-    }
+  .player__remove {
+    visibility: visible;
+  }
 }
 
 .player__remove {
-    visibility: hidden;
-    font-size: 22px;
-    position: absolute;
-    right: -5px;
-    top: -10px;
-    color: red;
+  visibility: hidden;
+  font-size: 22px;
+  position: absolute;
+  right: -5px;
+  top: -10px;
+  color: red;
 
-    button {
-        font-size: 25px;
-    }
+  button {
+    font-size: 25px;
+  }
 }
 
 .player__placeholder {
@@ -198,68 +198,68 @@
 }
 
 @media (max-width: 991px) {
-    .player {
-      transition: all 0.1s;
-      position: absolute;
-      height: 44px;
-      width: 32px;
-      padding-bottom: 23px;
-      z-index: 29;
-      left: 50%;
-      margin-left: -18.5px;
-      bottom: 50%;
-      transform-style: preserve-3d;
-      cursor: pointer;
-      display: block;
-    }
+  .player {
+    transition: all 0.1s;
+    position: absolute;
+    height: 44px;
+    width: 32px;
+    padding-bottom: 23px;
+    z-index: 29;
+    left: 50%;
+    margin-left: -18.5px;
+    bottom: 50%;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    display: block;
+  }
 
-    .player:hover {
-        .player__label span {
-            color: red;
-        }
-
-        .player__remove {
-            visibility: visible;
-        }
-    }
-
-    .player__label {
-        bottom: -20px;
-        width: 80px;
-        margin: 0 auto;
-        overflow-y: hidden;
-        text-overflow: ellipsis;
+  .player:hover {
+    .player__label span {
+      color: red;
     }
 
     .player__remove {
-        visibility: visible;
-        position: absolute;
-        right: -15px;
-        top: -15px;
-        color: red;
-        z-index: 99;
-
-        button {
-            font-size: 25px;
-        }
+      visibility: visible;
     }
+  }
 
-    .player__placeholder {
-      position: absolute;
-      opacity: 0;
-      transform: rotateX(90deg);
-      height: 30px;
-      width: 30px;
-      bottom: -10px;
-      left: 0;
-      right: 0;
-      margin: auto;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.2);
-      z-index: 1;
-    }
+  .player__label {
+    bottom: -20px;
+    width: 80px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+  }
 
-    .player__img img {
-        width: 40px;
+  .player__remove {
+    visibility: visible;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    color: red;
+    z-index: 99;
+
+    button {
+      font-size: 25px;
     }
+  }
+
+  .player__placeholder {
+    position: absolute;
+    opacity: 0;
+    transform: rotateX(90deg);
+    height: 30px;
+    width: 30px;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  .player__img img {
+    width: 40px;
+  }
 }
