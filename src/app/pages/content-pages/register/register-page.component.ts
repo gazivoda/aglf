@@ -17,8 +17,8 @@ export class RegisterPageComponent {
   }
 
   onSubmit() {
-    console.log('SUBMIT', this.registerForm.value.inputEmail, this.registerForm.value.inputPass);
-    this.authService.signupUser(this.registerForm.value.inputEmail, this.registerForm.value.inputPass).subscribe((data) => {
+    console.log('SUBMIT', this.registerForm.value.fname, this.registerForm.value.inputPass);
+    this.authService.signupUser(this.registerForm.value.fname, this.registerForm.value.inputPass).subscribe((data) => {
       this.registerForm.reset();
       this.authService.setToken(data.token);
       this.router.navigate(['dashboard/dashboard1']);
