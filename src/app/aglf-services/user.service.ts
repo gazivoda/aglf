@@ -52,11 +52,10 @@ export class UserService {
             }));
             this.playersService.setPlayers(playersData).subscribe(res => {
                 this._selectedPlayers$.next(new Array(15));
+                this._budget$.next(100);
                 selectedPlayers.filter((p: Player) => p !== null).forEach((player: Player, i: number) => {
                     this.addPlayer(player, false);
                 });
-
-                this._budget$.next(this._budget$.value + player.price);
             });
         }
     }

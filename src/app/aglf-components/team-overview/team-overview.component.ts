@@ -75,7 +75,6 @@ export class TeamOverviewComponent implements OnInit {
     }
 
     selectPositionEventHandler(position: Position) {
-        console.log('team: selectPositionEventHandler', position)
         this.position = position;
     }
 }
