@@ -17,3 +17,9 @@ body {
 .table td, .table th {
   border-top: none !important;
 }
+
+@media (max-width: 991px) {
+    .p-sm-0 {
+        padding: 0;
+    }
+}
