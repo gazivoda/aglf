@@ -62,35 +62,35 @@ export class PlayerCardComponent implements OnInit {
             case 2:
                 this.position = Position.DEFENDER;
                 this.x = -500;
-                this.y = -50;
+                this.y = -30;
                 break;
 
             // D2
             case 3:
                 this.position = Position.DEFENDER;
                 this.x = -250;
-                this.y = -50;
+                this.y = -30;
                 break;
 
             // D3
             case 4:
                 this.position = Position.DEFENDER;
                 this.x = 0;
-                this.y = -50;
+                this.y = -30;
                 break;
 
             // D4
             case 5:
                 this.position = Position.DEFENDER;
                 this.x = 250;
-                this.y = -50;
+                this.y = -30;
                 break;
 
             // D5
             case 6:
                 this.position = Position.DEFENDER;
                 this.x = 500;
-                this.y = -50;
+                this.y = -30;
                 break;
 
             // M1

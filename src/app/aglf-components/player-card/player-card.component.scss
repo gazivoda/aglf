@@ -27,9 +27,13 @@
     visibility: hidden;
     font-size: 22px;
     position: absolute;
-    right: -4px;
-    top: -4px;
+    right: -5px;
+    top: -10px;
     color: red;
+
+    button {
+        font-size: 25px;
+    }
 }
 
 .player__placeholder {
@@ -229,12 +233,15 @@
 
     .player__remove {
         visibility: visible;
-        font-size: 22px;
         position: absolute;
-        right: -10px;
-        top: -4px;
+        right: -15px;
+        top: -15px;
         color: red;
         z-index: 99;
+
+        button {
+            font-size: 25px;
+        }
     }
 
     .player__placeholder {
