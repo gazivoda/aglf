@@ -17,6 +17,9 @@ export class PitchComponent implements OnInit {
     @Output()
     selectPositionEventEmitter: EventEmitter<Position> = new EventEmitter<Position>();
 
+    @Output()
+    openPlayerModalEventEmitter: EventEmitter<Player> = new EventEmitter<Player>();
+
     constructor() { }
 
     ngOnInit() {
@@ -28,6 +31,10 @@ export class PitchComponent implements OnInit {
 
     selectPositionEventHandler(position: Position) {
         this.selectPositionEventEmitter.emit(position);
+    }
+
+    openPlayerModalEventHandler(player: Player) {
+        this.openPlayerModalEventEmitter.emit(player);
     }
 
 }

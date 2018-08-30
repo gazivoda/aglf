@@ -20,6 +20,9 @@ export class PlayerCardComponent implements OnInit {
     @Output()
     selectPositionEventEmitter: EventEmitter<Position> = new EventEmitter<Position>();
 
+    @Output()
+    openPlayerModalEventEmitter: EventEmitter<Player> = new EventEmitter<Player>();
+
     position: Position;
 
     x: number;
@@ -40,6 +43,10 @@ export class PlayerCardComponent implements OnInit {
 
     selectPosition() {
         this.selectPositionEventEmitter.emit(this.position);
+    }
+
+    openPlayerModal(player: Player) {
+        this.openPlayerModalEventEmitter.emit(player);
     }
 
     resolveCoordinates(index: number) {

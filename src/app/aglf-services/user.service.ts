@@ -35,6 +35,42 @@ export class UserService {
         return this._budget$.asObservable();
     }
 
+    updatePlayerData(playerData: PlayerData) {
+        let selectedPlayers = this._selectedPlayers$.value;
+        let index: number = -1;
+        selectedPlayers.forEach((p: Player, i: number) => {
+            if (p && p.id === playerData.id) {
+                index = i;
+            } else if (p && p.id !== playerData.id) {
+                if (playerData.captain && p.captain) {
+                    p.captain = false;
+                }
+                if (playerData.viceCaptain && p.viceCaptain) {
+                    p.viceCaptain = false;
+                }
+            }
+        });
+        if (index > -1) {
+            selectedPlayers[index].active = playerData.active;
+            selectedPlayers[index].captain = playerData.captain;
+            selectedPlayers[index].viceCaptain = playerData.viceCaptain;
+
+            let playersData: PlayerData[] = selectedPlayers.filter((p: Player) => p !== null).map((player: Player) => new PlayerData({
+                id: player.id,
+                active: player.active,
+                captain: player.captain,
+                viceCaptain: player.viceCaptain
+            }));
+            this.playersService.setPlayers(playersData).subscribe(res => {
+                this._selectedPlayers$.next(new Array(15));
+                this._budget$.next(100);
+                selectedPlayers.filter((p: Player) => p !== null).forEach((player: Player, i: number) => {
+                    this.addPlayer(player, false);
+                });
+            });
+        }
+    }
+
     removePlayer(player: Player) {
         let selectedPlayers = this._selectedPlayers$.value;
         let index: number = -1;
@@ -48,7 +84,10 @@ export class UserService {
             selectedPlayers[index] = null;
 
             let playersData: PlayerData[] = selectedPlayers.filter((p: Player) => p !== null).map((player: Player) => new PlayerData({
-                id: player.id
+                id: player.id,
+                active: player.active,
+                captain: player.captain,
+                viceCaptain: player.viceCaptain
             }));
             this.playersService.setPlayers(playersData).subscribe(res => {
                 this._selectedPlayers$.next(new Array(15));
