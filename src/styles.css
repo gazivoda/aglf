@@ -15,6 +15,10 @@ body {
   font-family: 'Open Sans', helvetica, arial, sans-serif;
 }
 
+.modal-open .modal {
+    margin-top: 200px;
+}
+
 .table td, .table th {
   border-top: none !important;
 }

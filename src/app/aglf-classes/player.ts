@@ -32,7 +32,10 @@ export function mapPlayerData(data: any): Player {
             id: data.teamId,
             name: data.teamName,
             jerseyUrl: data.jerseyUrl
-        })
+        }),
+        active: data.active,
+        captain: data.captain,
+        viceCaptain: data.viceCaptain
     });
 }
 
@@ -48,6 +51,9 @@ export class Player {
     number: number = null;
     price: number = null;
     team: Team = null;
+    active: boolean = null;
+    captain: boolean = null;
+    viceCaptain: boolean = null;
 
     constructor(player?: any) {
         if (player) {
@@ -61,7 +67,10 @@ export class Player {
                 positionName: player.positionName || null,
                 number: player.number || null,
                 price: player.price || null,
-                team: player.team || null
+                team: player.team || null,
+                active: player.active || false,
+                captain: player.captain || false,
+                viceCaptain: player.viceCaptain || false,
             });
         }
     }
