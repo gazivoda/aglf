@@ -7,6 +7,7 @@ import {PlayersService} from 'app/aglf-services/players.service';
 import {UserService} from 'app/aglf-services/user.service';
 import {Player} from 'app/aglf-classes/player';
 import {EndpointService} from '../../aglf-services/endpoint.service';
+import {NGXToastrService} from './../../components/extra/toastr/toastr.service'
 
 declare var require: any;
 
@@ -23,7 +24,8 @@ export interface Chart {
 @Component({
   selector: 'app-dashboard1',
   templateUrl: './dashboard1.component.html',
-  styleUrls: ['./dashboard1.component.scss']
+  styleUrls: ['./dashboard1.component.scss'],
+  providers: [NGXToastrService]
 })
 
 export class Dashboard1Component {
@@ -70,13 +72,19 @@ export class Dashboard1Component {
     ],
   };
 
-  constructor(private playersService: PlayersService, private userService: UserService, private endpointService: EndpointService) {
+  constructor(private playersService: PlayersService,
+              private userService: UserService,
+              private endpointService: EndpointService,
+              private toasterService: NGXToastrService) {
   }
 
   ngOnInit() {
+    $.getScript('./assets/js/tour.js');
+    $.getScript('./assets/js/hopscotch.min.js');
     this.userService.getUserDetails()
       .subscribe((data: any) => {
         this.userDetails = data;
+        this.checkInfoMessages(data.players.length);
         this.endpointService.getProgressForUser(data.userId).subscribe((data: any) => {
           if (data && data.length > 0) {
             this.userProgress = data;
@@ -111,6 +119,15 @@ export class Dashboard1Component {
   ngOnDestroy() {
     this._destroyed$.next(true);
     this._destroyed$.complete();
+  }
+
+  checkInfoMessages(numberOfPlayers: number) {
+    if (numberOfPlayers === 0) {
+      this.toasterService.infoPlayersNumberZero();
+    }
+    if (numberOfPlayers < 11) {
+      this.toasterService.infoPlayersNumberMoreThenZero();
+    }
   }
 
   totalTeamCost(userDetails: any) {

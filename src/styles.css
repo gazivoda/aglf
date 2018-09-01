@@ -16,7 +16,7 @@ body {
 }
 
 .modal-open .modal {
-    margin-top: 200px;
+  margin-top: 200px;
 }
 
 .table td, .table th {
@@ -43,4 +43,8 @@ body {
 
 .table tr {
   border-bottom: solid 1px whitesmoke;
+}
+
+.toast-text {
+  font-size: 11px;
 }
