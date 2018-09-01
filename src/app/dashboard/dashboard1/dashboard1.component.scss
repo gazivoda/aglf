@@ -267,11 +267,15 @@ body {
   align-items: center;
 }
 
+.card-player-wrapper {
+  overflow-x: scroll;
+}
+
 .card-player {
   display: flex;
   min-width: 100%;
-  min-height: 220px;
-  overflow-x: scroll;
+  min-height: 200px;
+  //overflow-x: scroll;
   text-align: center;
 }
 

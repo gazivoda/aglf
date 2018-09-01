@@ -48,3 +48,9 @@ body {
 .toast-text {
   font-size: 11px;
 }
+
+.form-check-label {
+  margin-bottom: 0;
+  margin-left: 10px;
+  margin-top: 4px;
+}

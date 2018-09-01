@@ -1,3 +1,14 @@
-#team-overview {
-    color: #fff;
+.team-overview {
+  overflow-x: hidden;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .team-overview {
+    margin-left: -27px;
+    margin-right: -31px;
+  }
+  .world {
+    margin-left: -23px;
+  }
 }
