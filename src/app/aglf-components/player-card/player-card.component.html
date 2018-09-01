@@ -28,7 +28,7 @@
         </button>
     </div>
     <div class="player__label" style="display: block; opacity: 1;">
-        <span>{{ player ? (player.lastName ? player.lastName : player.fullName) : 'add player' }}</span>
+        <span>{{ player ? (player.lastName ? player.lastName : player.fullName) : 'add player' }} {{ active ? '1' : '0'}}</span>
     </div>
     <div class="player__img">
         <img [src]="player ? player.team.jerseyUrl : '/assets/img/question-mark-80-2.png'">
