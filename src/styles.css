@@ -6,7 +6,7 @@
 
 html,
 body {
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
   width: 100vw;
   font-size: 62.5%;
   padding: 0;
