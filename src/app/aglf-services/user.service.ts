@@ -114,15 +114,19 @@ export class UserService {
         });
 
         if (index > -1) {
-            if (samePositionIndexes.length > 0) {
-                samePositionIndexes.forEach((positionIndex: number, i: number) => {
-                    if (index < positionIndex) {
-                        selectedPlayers[positionIndex - 1] = selectedPlayers[positionIndex];
-                    }
-                });
-                selectedPlayers[samePositionIndexes[samePositionIndexes.length - 1]] = null;
-            } else {
+            if (index === 1) {
                 selectedPlayers[index] = null;
+            } else {
+                if (samePositionIndexes.length > 0) {
+                    samePositionIndexes.forEach((positionIndex: number, i: number) => {
+                        if (index < positionIndex) {
+                            selectedPlayers[positionIndex - 1] = selectedPlayers[positionIndex];
+                        }
+                    });
+                    selectedPlayers[samePositionIndexes[samePositionIndexes.length - 1]] = null;
+                } else {
+                    selectedPlayers[index] = null;
+                }
             }
 
             let playersData: PlayerData[] = selectedPlayers.filter((p: Player) => p !== null).map((player: Player) => new PlayerData({
