@@ -14,6 +14,9 @@ export class PlayerCardComponent implements OnInit {
     @Input()
     player: Player;
 
+    @Input()
+    active: boolean = false;
+
     @Output()
     removePlayerEventEmitter: EventEmitter<Player> = new EventEmitter<Player>();
 

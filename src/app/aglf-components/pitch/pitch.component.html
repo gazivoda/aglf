@@ -8,6 +8,7 @@
         <app-player-card *ngFor="let player of selectedPlayers; let i=index"
             [index]="i"
             [player]="player"
+            [active]="player && player.active"
             (removePlayerEventEmitter)="removePlayerEventHandler($event)"
             (selectPositionEventEmitter)="selectPositionEventHandler($event)"
             (openPlayerModalEventEmitter)="openPlayerModalEventHandler($event)"></app-player-card>
