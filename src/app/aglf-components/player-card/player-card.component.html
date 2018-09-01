@@ -1,36 +1,38 @@
-<div class="player" [ngStyle]="{ 'transform': 'translateX(' + x + '%) translateY(' + y + '%) ' }" (click)="player ? false : selectPosition()">
-    <div class="player__placeholder"></div>
-    <div class="player__card">
-        <!--<h3>{{ name }}</h3>
-        <ul class="player__card__list">
-            <li>DOB<br>32</li>
-            <li>Height<br>1.87m</li>
-            <li>Origin<br>Brazil</li>
-        </ul>
-        <ul class="player__card__list player__card__list--last">
-            <li>
-                <span>Games</span><br>34
-            </li>
-            <li>
-                <span>Goals</span><br>0
-            </li>
-        </ul>
-        -->
-    </div>
-    <div class="player__remove" *ngIf="player" (click)="removePlayer()">
-        <button type="button" class="close" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="player__info" *ngIf="player" (click)="openPlayerModal(player)">
-        <button type="button" class="close" aria-label="Info">
-          <span aria-hidden="true"><i>i</i></span>
-        </button>
-    </div>
-    <div class="player__label" style="display: block; opacity: 1;">
-        <span>{{ player ? (player.lastName ? player.lastName : player.fullName) : 'add player' }} {{ active ? '1' : '0'}}</span>
-    </div>
-    <div class="player__img">
-        <img [src]="player ? player.team.jerseyUrl : '/assets/img/question-mark-80-2.png'">
-    </div>
+<div class="player" [className]="active ? 'player' : 'player inactive'"
+     [ngStyle]="{ 'transform': 'translateX(' + x + '%) translateY(' + y + '%) ' }"
+     (click)="player ? false : selectPosition()">
+  <div class="player__placeholder"></div>
+  <div class="player__card">
+    <!--<h3>{{ name }}</h3>
+    <ul class="player__card__list">
+        <li>DOB<br>32</li>
+        <li>Height<br>1.87m</li>
+        <li>Origin<br>Brazil</li>
+    </ul>
+    <ul class="player__card__list player__card__list--last">
+        <li>
+            <span>Games</span><br>34
+        </li>
+        <li>
+            <span>Goals</span><br>0
+        </li>
+    </ul>
+    -->
+  </div>
+  <div class="player__remove" *ngIf="player" (click)="removePlayer()">
+    <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="player__info" *ngIf="player" (click)="openPlayerModal(player)">
+    <button type="button" class="close" aria-label="Info">
+      <span aria-hidden="true"><i>i</i></span>
+    </button>
+  </div>
+  <div class="player__label" style="display: block; opacity: 1;">
+    <span>{{ player ? (player.lastName ? player.lastName : player.fullName) : 'add player' }}</span>
+  </div>
+  <div class="player__img">
+    <img [src]="player ? player.team.jerseyUrl : '/assets/img/question-mark-80-2.png'">
+  </div>
 </div>
