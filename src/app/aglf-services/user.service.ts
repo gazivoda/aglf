@@ -82,12 +82,12 @@ export class UserService {
             selectedPlayers[index].captain = playerData.captain;
             selectedPlayers[index].viceCaptain = playerData.viceCaptain;
 
-            let playersData: PlayerData[] = selectedPlayers.map((player: Player, i: number) => new PlayerData({
-                id: player.id || null,
-                active: player.active || false,
-                captain: player.captain || false,
-                viceCaptain: player.viceCaptain || false
-            })).filter((p: Player) => p.id !== null);
+            let playersData: PlayerData[] = selectedPlayers.filter((p: Player) => p !== null).map((player: Player, i: number) => new PlayerData({
+                id: player.id,
+                active: player.active,
+                captain: player.captain,
+                viceCaptain: player.viceCaptain
+            }));
             this.playersService.setPlayers(playersData).subscribe(res => {
                 this._selectedPlayers$.next(new Array(15));
                 let totalPrice = selectedPlayers.reduce((total, player) =>  total + player.price, 0);
