@@ -1,0 +1,7 @@
+{
+  "name": "aglf-mobile",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
