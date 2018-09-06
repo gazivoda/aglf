@@ -35,32 +35,133 @@ export class UserService {
         return this._budget$.asObservable();
     }
 
-    removePlayer(player: Player) {
-        let selectedPlayers = this._selectedPlayers$.value;
+    updatePlayerData(playerData: PlayerData) {
+        let selectedPlayers: Player[] = this._selectedPlayers$.value;
         let index: number = -1;
-        selectedPlayers.forEach((p: Player, i: number) => {
-            if (p && p.id === player.id) {
+        selectedPlayers.forEach((p: Player, i: number, players: Player[]) => {
+            if (p && p.id === playerData.id) {
                 index = i;
-                return;
+            } else if (p && p.id !== playerData.id) {
+                if (playerData.captain && p.captain) {
+                    players[i].captain = false;
+                }
+                if (playerData.viceCaptain && p.viceCaptain) {
+                    players[i].viceCaptain = false;
+                }
             }
         });
         if (index > -1) {
-            selectedPlayers[index] = null;
+            let player: Player = selectedPlayers.find((p: Player) => p.id === playerData.id);
 
-            let playersData: PlayerData[] = selectedPlayers.filter((p: Player) => p !== null).map((player: Player) => new PlayerData({
-                id: player.id
+            let maxActivePlayersByPosition: number;
+            let activePlayersByPosition: number = selectedPlayers.filter((p: Player) => p.position === player.position && p.active).length;
+
+            if (player.position === Position.GOALKEEPER) {
+                maxActivePlayersByPosition = 1;
+            } else if (player.position === Position.DEFENDER || player.position === Position.MIDFIELDER) {
+                maxActivePlayersByPosition = 4;
+            } else if (player.position === Position.STRIKER) {
+                maxActivePlayersByPosition = 2;
+            }
+
+            if (playerData.active && maxActivePlayersByPosition === activePlayersByPosition) {
+                if (index === 1 || index === 6 || index === 11 || index === 14) {
+                    selectedPlayers[index - 1].active = false;
+                } else {
+                    let lastActiveIndex: number;
+                    selectedPlayers.forEach((p: Player, i: number) => {
+                        if (p.position === player.position) {
+                            lastActiveIndex = i;
+                        }
+                    });
+                    selectedPlayers[lastActiveIndex].active = false;
+                }
+            }
+
+            selectedPlayers[index].active = playerData.active;
+            selectedPlayers[index].captain = playerData.captain;
+            selectedPlayers[index].viceCaptain = playerData.viceCaptain;
+
+            let playersData: PlayerData[] = selectedPlayers.filter((p: Player) => p !== null).map((player: Player, i: number) => new PlayerData({
+                id: player.id,
+                active: player.active,
+                captain: player.captain,
+                viceCaptain: player.viceCaptain
             }));
             this.playersService.setPlayers(playersData).subscribe(res => {
                 this._selectedPlayers$.next(new Array(15));
-                this._budget$.next(100);
-                selectedPlayers.filter((p: Player) => p !== null).forEach((player: Player, i: number) => {
-                    this.addPlayer(player, false);
-                });
+                let totalPrice = selectedPlayers.reduce((total, player) =>  total + player.price, 0);
+                this._budget$.next(100 - totalPrice);
+                this._selectedPlayers$.next(selectedPlayers);
+            });
+        }
+    }
+
+    removePlayer(player: Player) {
+        let selectedPlayers = this._selectedPlayers$.value;
+        let index: number = -1;
+        let playersOnSamePosition: Player[] = [];
+        let samePositionIndexes: number[] = [];
+        selectedPlayers.forEach((p: Player, i: number) => {
+            if (p && p.id === player.id) {
+                index = i;
+            } else {
+                if (p !== null && p.position === player.position) {
+                    playersOnSamePosition.push(p);
+                    samePositionIndexes.push(i);
+                }
+            }
+        });
+
+        if (index > -1) {
+            if (index === 1) {
+                selectedPlayers[index] = null;
+            } else {
+                if (samePositionIndexes.length > 0) {
+                    samePositionIndexes.forEach((positionIndex: number, i: number) => {
+                        if (index < positionIndex) {
+                            selectedPlayers[positionIndex - 1] = selectedPlayers[positionIndex];
+                        }
+                    });
+                    selectedPlayers[samePositionIndexes[samePositionIndexes.length - 1]] = null;
+                } else {
+                    selectedPlayers[index] = null;
+                }
+            }
+
+            let playersData: PlayerData[] = selectedPlayers.filter((p: Player) => p !== null).map((player: Player) => new PlayerData({
+                id: player.id,
+                active: player.active,
+                captain: player.captain,
+                viceCaptain: player.viceCaptain
+            }));
+            this.playersService.setPlayers(playersData).subscribe(res => {
+                this._selectedPlayers$.next(new Array(15));
+                let totalPrice = selectedPlayers.filter(p => p !== null).reduce((total, player) =>  total + player.price, 0);
+                this._budget$.next(100 - totalPrice);
+                this._selectedPlayers$.next(selectedPlayers);
             });
         }
     }
 
     addPlayer(player: Player, update: boolean) {
+        let selectedPlayers: Player[] = this._selectedPlayers$.value;
+
+        let maxActivePlayersByPosition: number;
+        let activePlayersByPosition: number = selectedPlayers.filter((p: Player) => p !== null && p.position === player.position && p.active).length;
+
+        if (player.position === Position.GOALKEEPER) {
+            maxActivePlayersByPosition = 1;
+        } else if (player.position === Position.DEFENDER || player.position === Position.MIDFIELDER) {
+            maxActivePlayersByPosition = 4;
+        } else if (player.position === Position.STRIKER) {
+            maxActivePlayersByPosition = 2;
+        }
+
+        if (activePlayersByPosition < maxActivePlayersByPosition) {
+            player.active = true;
+        }
+
         if (this.checkIfPlayerExists(player)) {
             console.log(player.fullName, ' is already in the team. ID =', player.id);
         } else {
@@ -96,7 +197,10 @@ export class UserService {
 
         if (update === true) {
             let playersData: PlayerData[] = selectedPlayers.filter(p => p !== null).map((player: Player) => new PlayerData({
-                id: player.id
+                id: player.id,
+                active: player.active,
+                captain: player.captain,
+                viceCaptain: player.viceCaptain
             }));
             this.playersService.setPlayers(playersData).subscribe(res => console.log(res));
         }
@@ -112,7 +216,6 @@ export class UserService {
 
     addGoalkeeper(player: Player, update: boolean) {
         let selectedPlayers = this._selectedPlayers$.value;
-        let budget = this._budget$.value;
         if (selectedPlayers[0] && selectedPlayers[1]) {
             console.log('cannot add any more gks');
         } else if (selectedPlayers[0]) {

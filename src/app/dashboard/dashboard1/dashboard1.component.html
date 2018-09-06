@@ -12,6 +12,10 @@
               <i class="first-media-subtext"><h4><b>{{userDetails.round?userDetails.round: 0 }}</b> Rounds Played
               </h4></i>
             </div>
+            <button id="btnStartTour" class="btn btn-danger btn-raised">
+              <i class="ft-star mr-1"></i>
+              Quick Tour
+            </button>
           </div>
         </div>
       </div>
@@ -103,18 +107,20 @@
           <h2 class="card-title">Top Players </h2>
         </div>
       </div>
-      <section class="card-player">
-        <ng-container *ngFor="let player of topPlayers; let i = index">
-          <div class="card--content" *ngIf="i<10">
-            <img [src]="player? player.jerseyUrl : '/assets/img/question-mark-80.png'">
-            <div class="card--content-first"> {{player.lastName}}</div>
-            <div class="card--content-second">
-              <span class="card--content-second-1">{{i+1}}. </span>
-              <span class="card--content-second-2">{{player.score}} pts </span>
+      <div class="card-player-wrapper">
+        <section class="card-player">
+          <ng-container *ngFor="let player of topPlayers; let i = index">
+            <div class="card--content" *ngIf="i<10">
+              <img [src]="player? player.jerseyUrl : '/assets/img/question-mark-80.png'">
+              <div class="card--content-first"> {{player.lastName}}</div>
+              <div class="card--content-second">
+                <span class="card--content-second-1">{{i+1}}. </span>
+                <span class="card--content-second-2">{{player.score}} pts </span>
+              </div>
             </div>
-          </div>
-        </ng-container>
-      </section>
+          </ng-container>
+        </section>
+      </div>
     </div>
   </div>
 </div>

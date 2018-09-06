@@ -21,6 +21,10 @@
   .player__remove {
     visibility: visible;
   }
+
+  .player__info {
+    visibility: visible;
+  }
 }
 
 .player__remove {
@@ -33,6 +37,19 @@
 
   button {
     font-size: 25px;
+  }
+}
+
+.player__info {
+  visibility: hidden;
+  position: absolute;
+  left: -10px;
+  top: -5px;
+  z-index: 99;
+
+  button {
+    padding: 0 5px;
+    font-size: 20px;
   }
 }
 
@@ -244,6 +261,18 @@
     }
   }
 
+  .player__info {
+    visibility: visible;
+    position: absolute;
+    left: -4px;
+    top: -10px;
+
+    button {
+      padding: 0 5px;
+      font-size: 20px;
+    }
+  }
+
   .player__placeholder {
     position: absolute;
     opacity: 0;
@@ -262,4 +291,8 @@
   .player__img img {
     width: 40px;
   }
+}
+
+.player.inactive {
+  opacity: .7;
 }

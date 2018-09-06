@@ -27,7 +27,7 @@
         <!--</a>-->
       <!--</li>-->
 
-      <li *ngFor="let menuItem of menuItems" [ngClass]="[menuItem.class]"
+      <li *ngFor="let menuItem of menuItems" [ngClass]="[menuItem.class]" [attr.id]="menuItem.icon"
           [routerLinkActive]="menuItem.submenu.length != 0 ? '' : 'active'"
           [routerLinkActiveOptions]="{exact: true}">
         <a [routerLink]="menuItem.class === '' ? [menuItem.path] : null"

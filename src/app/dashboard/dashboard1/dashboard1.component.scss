@@ -193,10 +193,6 @@
 
 // Widget line Chart CSS Ends
 
-.first-media {
-  padding-top: 20px;
-}
-
 .first-media-i {
   font-size: 25px;
   margin-right: 10px;
@@ -271,11 +267,15 @@ body {
   align-items: center;
 }
 
+.card-player-wrapper {
+  overflow-x: scroll;
+}
+
 .card-player {
   display: flex;
   min-width: 100%;
-  min-height: 220px;
-  overflow-x: auto;
+  min-height: 200px;
+  //overflow-x: scroll;
   text-align: center;
 }
 
@@ -330,4 +330,9 @@ body {
 .card--content-second-2 {
   margin-right: 15px;
   float: right;
+}
+
+#btnStartTour {
+  margin-top: 35px;
+  margin-right: 5px;
 }

@@ -12,6 +12,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class LoginPageComponent {
 
   @ViewChild('f') loginForm: NgForm;
+  invalid: boolean = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -25,9 +26,13 @@ export class LoginPageComponent {
   onSubmit() {
     this.authService.signinUser(this.loginForm.value.inputEmail, this.loginForm.value.inputPass).subscribe((data) => {
       this.loginForm.reset();
+      this.invalid = false;
       this.authService.setToken(data.token);
       this.router.navigate(['dashboard/dashboard1']);
-    });
+    }, (err => {
+      console.log(err);
+      this.invalid = true;
+    }));
   }
 
   // On Forgot password link click
