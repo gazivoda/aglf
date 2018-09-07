@@ -1,0 +1,17 @@
+<div class="stage">
+  <div class="world">
+    <div class="terrain">
+      <div class="field ground">
+      </div>
+    </div>
+    <div class="team">
+        <app-player-card *ngFor="let player of selectedPlayers; let i=index"
+            [index]="i"
+            [player]="player"
+            [active]="player && player.active"
+            (removePlayerEventEmitter)="removePlayerEventHandler($event)"
+            (selectPositionEventEmitter)="selectPositionEventHandler($event)"
+            (openPlayerModalEventEmitter)="openPlayerModalEventHandler($event)"></app-player-card>
+    </div>
+  </div>
+</div>

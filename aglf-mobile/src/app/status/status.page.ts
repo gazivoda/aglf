@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PlayersService} from 'app/services/players.service';
 
 @Component({
   selector: 'app-status',
@@ -8,10 +7,9 @@ import { PlayersService} from 'app/services/players.service';
 })
 export class StatusPage {
 
-    constructor(private playersService: PlayersService) {
+    constructor() {
     }
 
     ngOnInit() {
-        this.playersService.getPlayers().subscribe(data => console.log(data));
     }
 }

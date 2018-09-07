@@ -1,19 +1,19 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { PlayersService } from 'app/aglf-services/players.service';
-import { UserService } from 'app/aglf-services/user.service';
-import { Player, PlayerData, Position } from 'app/aglf-classes/player';
+import { PlayersService } from 'app/services/players.service';
+import { UserService } from 'app/services/user.service';
+import { Player, PlayerData, Position } from 'app/classes/player';
 import { FormControl, FormGroup } from '@angular/forms';
-
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalController } from '@ionic/angular';
+import { ModalComponent } from '../components/modal/modal.component';
 
 @Component({
-    selector: 'app-team-overview',
-    templateUrl: './team-overview.component.html',
-    styleUrls: ['./team-overview.component.scss']
+    selector: 'app-team',
+    templateUrl: './team.page.html',
+    styleUrls: ['./team.page.scss'],
 })
-export class TeamOverviewComponent implements OnInit {
+export class TeamPage implements OnInit {
 
     private _destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
@@ -27,7 +27,7 @@ export class TeamOverviewComponent implements OnInit {
 
     playerRoleForm: FormGroup;
 
-    constructor(private playersService: PlayersService, private userService: UserService, private modalService: NgbModal) {
+    constructor(private playersService: PlayersService, private userService: UserService, private modalCtrl: ModalController) {
         this.playerRoleForm = new FormGroup({
             id: new FormControl(''),
             active: new FormControl(false),
@@ -55,7 +55,6 @@ export class TeamOverviewComponent implements OnInit {
 
                 if (players.length > 0) {
                     let prices = players.map(player => player.price).filter(p => p !== null);
-                    console.log(Math.max(...prices), Math.min(...prices));
                 }
             });
 
@@ -114,21 +113,34 @@ export class TeamOverviewComponent implements OnInit {
         this.position = position;
     }
 
-    openPlayerModalEventHandler(player: Player, content: TemplateRef<NgbModal>) {
+    openPlayerModalEventHandler(player: Player) {
         this.selectedPlayer = player;
         this.playerRoleForm.controls.id.setValue(player.id);
         this.playerRoleForm.controls.active.setValue(player.active);
         this.playerRoleForm.controls.captain.setValue(player.captain);
         this.playerRoleForm.controls.viceCaptain.setValue(player.viceCaptain);
-        this.open(content);
+        this.open();
     }
 
-    open(content) {
-        this.modalService.open(content).result.then((result) => {
-            let playerData: PlayerData = <PlayerData>this.playerRoleForm.value;
-            this.userService.updatePlayerData(playerData);
-        }, (reason) => {
-            console.log('modal closed');
+    open() {
+        let model = this.modalCtrl.create({
+            component: ModalComponent,
+            componentProps: {
+                selectedPlayer: this.selectedPlayer
+            },
+            showBackdrop: true
+        }).then((m) => {
+            m.onDidDismiss(data => console.log(data));
+            m.present();
         });
+        //modal.onDidDismiss();
+        // modal.onDidDismiss(data => {
+        //     console.log(data);
+        // });
     }
+
+    onModalDismiss(e, a) {
+        console.log('on modal dismiss', e, a);
+    }
+
 }

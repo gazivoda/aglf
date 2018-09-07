@@ -4,20 +4,14 @@ import { environment as env } from 'environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs'
 import { mapPlayerData, Player, PlayerData } from '../classes/player';
-//import { AuthService } from 'app/shared/auth/auth.service';
+import { AuthService } from './auth.service';
 
 const API_ENDPOINT = env.apiEndpoint;
 
 @Injectable()
 export class EndpointService {
 
-    authService = {
-        getToken(): string {
-            return '3c56e06471e282dcdebab5f9ad5d4cfb';
-        }
-    };
-
-    constructor(private http: HttpClient /*, private authService: AuthService*/) {
+    constructor(private http: HttpClient, private authService: AuthService) {
     }
 
     private createAuthorizationHeader(headers: HttpHeaders): HttpHeaders {

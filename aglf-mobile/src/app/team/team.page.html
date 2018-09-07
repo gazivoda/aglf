@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Team
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <app-pitch [selectedPlayers]="selectedPlayers" (removePlayerEventEmitter)="removePlayerEventHandler($event)"
+               (selectPositionEventEmitter)="selectPositionEventHandler($event)"
+               (openPlayerModalEventEmitter)="openPlayerModalEventHandler($event)"></app-pitch>
+
+</ion-content>
