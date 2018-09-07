@@ -1,12 +1,12 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { PlayersService } from 'app/services/players.service';
 import { UserService } from 'app/services/user.service';
 import { Player, PlayerData, Position } from 'app/classes/player';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { ModalComponent } from '../components/modal/modal.component';
+import { PlayerModalComponent } from '../components/player-modal/player-modal.component';
 
 @Component({
     selector: 'app-team',
@@ -16,6 +16,8 @@ import { ModalComponent } from '../components/modal/modal.component';
 export class TeamPage implements OnInit {
 
     private _destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
+
+    updatePlayerData$: BehaviorSubject<PlayerData> = new BehaviorSubject<PlayerData>(null);
 
     players: Player[] = [];
     selectedPlayers: Player[] = [];
@@ -92,11 +94,28 @@ export class TeamPage implements OnInit {
                     this.playerRoleForm.controls.captain.setValue(false);
                 }
             });
+
+        this.updatePlayerData$
+            .asObservable()
+            .pipe(
+                takeUntil(this._destroyed$)
+            )
+            .subscribe((playerData: PlayerData) => {
+                if (playerData) {
+                    this.updatePlayerData(playerData);
+                }
+            });
     }
 
     ngOnDestroy() {
         this._destroyed$.next(true);
         this._destroyed$.complete();
+    }
+
+    updatePlayerData(playerData: PlayerData) {
+        if (playerData) {
+            this.userService.updatePlayerData(playerData);
+        }
     }
 
     selectPlayerEventHandler(player: Player) {
@@ -123,24 +142,14 @@ export class TeamPage implements OnInit {
     }
 
     open() {
-        let model = this.modalCtrl.create({
-            component: ModalComponent,
+        this.modalCtrl.create({
+            component: PlayerModalComponent,
             componentProps: {
-                selectedPlayer: this.selectedPlayer
+                selectedPlayer: this.selectedPlayer,
+                playerRoleForm: this.playerRoleForm,
+                updatePlayerData: this.updatePlayerData$
             },
             showBackdrop: true
-        }).then((m) => {
-            m.onDidDismiss(data => console.log(data));
-            m.present();
-        });
-        //modal.onDidDismiss();
-        // modal.onDidDismiss(data => {
-        //     console.log(data);
-        // });
+        }).then(modal => modal.present());
     }
-
-    onModalDismiss(e, a) {
-        console.log('on modal dismiss', e, a);
-    }
-
 }

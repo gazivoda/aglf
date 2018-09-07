@@ -51,7 +51,7 @@ export class UserService {
             }
         });
         if (index > -1) {
-            let player: Player = selectedPlayers.find((p: Player) => p.id === playerData.id);
+            let player: Player = selectedPlayers.filter(p => p !== null).find((p: Player) => p.id === playerData.id);
 
             let maxActivePlayersByPosition: number;
             let activePlayersByPosition: number = selectedPlayers.filter((p: Player) => p.position === player.position && p.active).length;

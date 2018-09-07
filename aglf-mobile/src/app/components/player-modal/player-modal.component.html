@@ -1,0 +1,38 @@
+
+    <ion-header>
+        <ion-toolbar>
+          <ion-title>{{ selectedPlayer.fullName }}</ion-title>
+        </ion-toolbar>
+  </ion-header>
+
+  <ion-content padding class="modal">
+      <form [formGroup]="playerRoleForm">
+          <input class="form-check-input" type="hidden" formControlName="id">
+          <ion-item>
+              <ion-label>Active</ion-label>
+              <ion-checkbox slot="end" formControlName="active"></ion-checkbox>
+          </ion-item>
+          <ion-item>
+              <ion-label>Captain</ion-label>
+              <ion-checkbox slot="end" formControlName="captain"></ion-checkbox>
+          </ion-item>
+          <ion-item>
+              <ion-label>Vice Captain</ion-label>
+              <ion-checkbox slot="end" formControlName="viceCaptain"></ion-checkbox>
+          </ion-item>
+      </form>
+
+</ion-content>
+
+<ion-footer>
+    <ion-grid>
+        <ion-row>
+              <ion-col>
+                  <ion-button expand="block" color="danger" fill="clear" shape="round" (click)="dismiss(false)">Cancel</ion-button>
+              </ion-col>
+              <ion-col>
+                  <ion-button expand="block" color="primary" shape="round" (click)="dismiss(true)">Save</ion-button>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+</ion-footer>
