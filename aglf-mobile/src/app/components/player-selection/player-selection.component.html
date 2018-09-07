@@ -1,0 +1,37 @@
+<ion-card-header>
+    <ion-card-subtitle>{{budget | currency}}</ion-card-subtitle>
+    <ion-card-title>Player selection</ion-card-title>
+  </ion-card-header>
+  <form [formGroup]="playerSelectionForm">
+    <ion-item>
+        <ion-input type="text" formControlName="fullName" placeholder="Search for a player"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Filter players</ion-label>
+        <ion-select placeholder="All players" formControlName="playersFilter">
+          <ion-select-option *ngFor="let p of positions; let i=index" [value]="p" [selected]="selectedIndex === p.value">{{ p.name }}</ion-select-option>
+          <ion-select-option disabled>
+            <hr>
+          </ion-select-option>
+          <ion-select-option *ngFor="let t of teams; let i=index" [value]="t"
+                  [selected]="selectedIndex === i + positions.length">{{ t.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-label>Filter by price</ion-label>
+          <ion-select placeholder="Unlimited" formControlName="priceFilter">
+            <ion-select-option *ngFor="let p of priceRange; let i=index" [value]="p" [selected]="selectedPriceIndex === i">{{ p
+              === -1 ? 'Unlimited' : p | currency }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+  </form>
+
+
+  <ion-list>
+  <ion-item-sliding *ngFor="let player of filteredPlayers">
+    <ion-item (click)="selectPlayer(player)">
+      <ion-label><span style="color: #777;">{{positionName(player.position)}}</span> {{player.fullName}} <span style="float: right;">{{ player.price | currency}}</span></ion-label>
+    </ion-item>
+  </ion-item-sliding>
+</ion-list>

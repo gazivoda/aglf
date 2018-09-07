@@ -5,6 +5,7 @@ import { PitchComponent } from './pitch/pitch.component';
 import { PlayerModalComponent } from './player-modal/player-modal.component';
 import { SharedModule } from '../shared/shared.module';
 import { IonicModule } from '@ionic/angular';
+import { PlayerSelectionComponent } from './player-selection/player-selection.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { IonicModule } from '@ionic/angular';
   declarations: [
       PlayerCardComponent,
       PitchComponent,
-      PlayerModalComponent
+      PlayerModalComponent,
+      PlayerSelectionComponent
   ],
   entryComponents: [
     PlayerModalComponent
@@ -23,7 +25,8 @@ import { IonicModule } from '@ionic/angular';
   exports: [
       PlayerCardComponent,
       PitchComponent,
-      PlayerModalComponent
+      PlayerModalComponent,
+      PlayerSelectionComponent
   ]
 })
 export class ComponentsModule { }

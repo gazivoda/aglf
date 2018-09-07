@@ -9,8 +9,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
     <app-pitch [selectedPlayers]="selectedPlayers" (removePlayerEventEmitter)="removePlayerEventHandler($event)"
                (selectPositionEventEmitter)="selectPositionEventHandler($event)"
                (openPlayerModalEventEmitter)="openPlayerModalEventHandler($event)"></app-pitch>
+
+    <app-player-selection
+        [players]="players" [budget]="budget" [position]="position"
+        (selectPlayerEventEmitter)="selectPlayerEventHandler($event)"></app-player-selection>
 </ion-content>

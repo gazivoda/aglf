@@ -6,6 +6,7 @@
   </ion-header>
 
   <ion-content padding class="modal">
+          <ion-img [src]="selectedPlayer.team.jerseyUrl" width="100%"></ion-img>
       <form [formGroup]="playerRoleForm">
           <input class="form-check-input" type="hidden" formControlName="id">
           <ion-item>
@@ -24,7 +25,7 @@
 
 </ion-content>
 
-<ion-footer>
+<ion-footer style="background: white">
     <ion-grid>
         <ion-row>
               <ion-col>
