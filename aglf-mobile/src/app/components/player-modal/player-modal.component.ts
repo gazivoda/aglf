@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { PlayerData } from 'app/classes/player';
+import { Player, PlayerData } from 'app/classes/player';
 import { BehaviorSubject } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 
