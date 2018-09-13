@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, map, tap, switchMap, merge } from 'rxjs/operators';
 import { Player, Position } from 'app/classes/player';
@@ -8,7 +8,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 @Component({
     selector: 'app-player-selection',
     templateUrl: './player-selection.component.html',
-    styleUrls: ['./player-selection.component.scss']
+    styleUrls: ['./player-selection.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayerSelectionComponent implements OnInit {
 

@@ -46,35 +46,36 @@ export class TeamPage implements OnInit {
             .subscribe((data: any) => {
                 let selectedPlayers = data.players;
                 this.userService.setSelectedPlayers(selectedPlayers);
+
+                this.userService.getSelectedPlayers()
+                    .pipe(
+                        takeUntil(this._destroyed$)
+                    )
+                    .subscribe((selectedPlayers: Player[]) => {
+                        this.selectedPlayers = selectedPlayers;
+                    });
+
+                this.userService.getBudget()
+                    .pipe(
+                        takeUntil(this._destroyed$)
+                    )
+                    .subscribe((budget: number) => {
+                        this.budget = budget;
+                    });
+
+                this.playersService.getPlayers()
+                    .pipe(
+                        takeUntil(this._destroyed$)
+                    )
+                    .subscribe((players: Player[]) => {
+                        this.players = players;
+
+                        if (players.length > 0) {
+                            let prices = players.map(player => player.price).filter(p => p !== null);
+                        }
+                    });
             });
 
-        this.playersService.getPlayers()
-            .pipe(
-                takeUntil(this._destroyed$)
-            )
-            .subscribe((players: Player[]) => {
-                this.players = players;
-
-                if (players.length > 0) {
-                    let prices = players.map(player => player.price).filter(p => p !== null);
-                }
-            });
-
-        this.userService.getSelectedPlayers()
-            .pipe(
-                takeUntil(this._destroyed$)
-            )
-            .subscribe((selectedPlayers: Player[]) => {
-                this.selectedPlayers = selectedPlayers;
-            });
-
-        this.userService.getBudget()
-            .pipe(
-                takeUntil(this._destroyed$)
-            )
-            .subscribe((budget: number) => {
-                this.budget = budget;
-            });
 
         this.playerRoleForm.controls.captain.valueChanges
             .pipe(
@@ -153,6 +154,7 @@ export class TeamPage implements OnInit {
             showBackdrop: true
         }).then(modal => {
             console.log(modal);
-            modal.present()});
+            modal.present()
+        });
     }
 }
