@@ -5,22 +5,22 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: '/status',
         pathMatch: 'full'
-    },
-    {
-        path: 'status',
-        loadChildren: './status/status.module#StatusPageModule'//,
-        //canActivate: [ AuthGuard ]
     },
     {
         path: 'login',
         loadChildren: './login/login.module#LoginPageModule'
     },
     {
+        path: 'status',
+        loadChildren: './status/status.module#StatusPageModule',
+        canActivate: [ AuthGuard ]
+    },
+    {
         path: 'team',
-        loadChildren: './team/team.module#TeamPageModule'//,
-        //canActivate: [ AuthGuard ]
+        loadChildren: './team/team.module#TeamPageModule',
+        canActivate: [ AuthGuard ]
     }
 ];
 
