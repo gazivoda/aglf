@@ -9,7 +9,7 @@ const API_ENDPOINT = env.apiEndpoint;
 @Injectable()
 export class AuthService {
 
-    token: string = 'null'; 
+    token: string = null; 
 
     constructor(private http: HttpClient) {
     }
