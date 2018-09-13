@@ -31,7 +31,6 @@
   visibility: hidden;
   font-size: 22px;
   position: absolute;
-  top: -30px;
   color: red;
 
   button {
@@ -43,7 +42,7 @@
   visibility: hidden;
   position: absolute;
   left: -30px;
-    top: -30px;
+    top: -52px;
   z-index: 99;
 
   button {
@@ -250,7 +249,7 @@
   .player__remove {
     visibility: visible;
     position: absolute;
-    top: -30px;
+    top: -20px;
     color: red;
     z-index: 99;
 

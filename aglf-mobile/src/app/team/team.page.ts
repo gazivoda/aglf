@@ -25,7 +25,7 @@ export class TeamPage implements OnInit {
 
     position: Position | number = 0;
 
-    selectedPlayer: Player = null;
+    selectedPlayer: any = null;
 
     playerRoleForm: FormGroup;
 
@@ -142,6 +142,7 @@ export class TeamPage implements OnInit {
     }
 
     open() {
+        console.log('openning');
         this.modalCtrl.create({
             component: PlayerModalComponent,
             componentProps: {
@@ -150,6 +151,8 @@ export class TeamPage implements OnInit {
                 updatePlayerData: this.updatePlayerData$
             },
             showBackdrop: true
-        }).then(modal => modal.present());
+        }).then(modal => {
+            console.log(modal);
+            modal.present()});
     }
 }

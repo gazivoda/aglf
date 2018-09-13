@@ -11,7 +11,7 @@ import { ModalController } from '@ionic/angular';
 export class PlayerModalComponent implements OnInit {
 
     @Input()
-    selectedPlayer: Player;
+    selectedPlayer: any;
 
     @Input()
     playerRoleForm: any;

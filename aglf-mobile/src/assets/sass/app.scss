@@ -8,3 +8,8 @@
 @import "scss/fonts/weather-icons";
 @import "scss/plugins";
 @import "scss/demo";  // Remove this SCSS from production
+
+
+.modal {
+    display: block !important;
+}
