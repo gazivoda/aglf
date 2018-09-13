@@ -1,0 +1,16 @@
+ion-header, ion-footer {
+    z-index: 2222;
+}
+
+ion-img {
+    img {
+        margin-top: 40px 0 0 0;
+    }
+}
+
+.modal {
+    width: 100%;
+    background: white;
+    display: block !important;
+    text-align: center;
+}
