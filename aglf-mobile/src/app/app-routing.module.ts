@@ -13,14 +13,27 @@ const routes: Routes = [
         loadChildren: './login/login.module#LoginPageModule'
     },
     {
+        path: 'register',
+        loadChildren: './register/register.module#RegisterPageModule'
+    },
+    {
+        path: 'forgot-password',
+        loadChildren: './forgot-password/forgot-password.module#ForgotPasswordPageModule'
+    },
+    {
         path: 'status',
         loadChildren: './status/status.module#StatusPageModule',
-        canActivate: [ AuthGuard ]
+        canActivate: [AuthGuard]
     },
     {
         path: 'team',
         loadChildren: './team/team.module#TeamPageModule',
-        canActivate: [ AuthGuard ]
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'leaderboard',
+        loadChildren: './leaderboard/leaderboard.module#LeaderboardPageModule',
+        canActivate: [AuthGuard]
     }
 ];
 
