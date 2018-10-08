@@ -1,0 +1,44 @@
+.item-image {
+    width: 26px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .aglf-header-left {
+      display: inline-block;
+    top: 0;
+    margin: 0;
+    left: 0;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .aglf-header-right {
+    position: relative;
+    z-index: 4;
+  }
+  
+  .aglf-header-left img {
+    height: 74px;
+  }
+  
+  .card-header {
+    background: #ec1d23;
+    box-sizing: unset;
+    border-left: solid 73px white;
+    color: white;
+    height: 21px;
+    padding: 1.5rem;
+  }
+  
+  .aglf-header-right h1 {
+    font-size: 17px !important;
+  }
+  
+  .player-image {
+    width: 35px;
+    height: auto;
+    margin-right: 30px !important;
+    margin-top: 5px;
+  }
+  

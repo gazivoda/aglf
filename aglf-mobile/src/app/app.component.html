@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane>
-    <ion-menu>
+    <ion-menu *ngIf="showMenu">
       <ion-header>
         <ion-toolbar>
           <ion-title><img src="/assets/img/logo.png"></ion-title>
@@ -18,6 +18,11 @@
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
+      <ion-footer>
+        <ion-item class="text-center" (click)="logout()">
+          <ion-label>Logout</ion-label>
+        </ion-item>
+      </ion-footer>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
   </ion-split-pane>

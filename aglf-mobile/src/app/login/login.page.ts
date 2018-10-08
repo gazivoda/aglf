@@ -37,11 +37,11 @@ export class LoginPage {
 
     // On Forgot password link click
     onForgotPassword() {
-      this.router.navigate(['forgotpassword'], {relativeTo: this.route.parent});
+      this.router.navigate(['/forgot-password']);
     }
 
     // On registration link click
     onRegister() {
-      this.router.navigate(['register'], {relativeTo: this.route.parent});
+      this.router.navigate(['/register']);
     }
 }
