@@ -1,9 +1,9 @@
 ## Short description 
 
-## Technical specification
+## Whats done
 
 ## Jira link 
 
-## Testing 
+## Test 
 
 ## Demo
