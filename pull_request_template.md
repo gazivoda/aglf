@@ -1,9 +1,9 @@
-## 📄Short description 
+## 📄 Short description 
 
-## ✅Whats done
+## ✅ Whats done
 
-## 🔗Jira link 
+## 🔗 Jira link 
 
-## 👷🏻‍♂️Test 
+## 👷🏻‍♂️ Test 
 
-## 👀Demo
+## 👀 Demo
