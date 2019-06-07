@@ -1,4 +1,4 @@
-## 📄 Short description 
+## 📄 Description 
 
 ## ✅ Whats done
 
